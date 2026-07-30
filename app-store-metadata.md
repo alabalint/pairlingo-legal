@@ -69,19 +69,19 @@ nyelvtanulás,szavak,szótanulás,memória,szópárosító,angol,vocabulary,flas
 ## Support URL
 
 ```
-https://<GITHUB_USERNAME>.github.io/wordmatch-legal/
+https://alabalint.github.io/wordmatch-legal/
 ```
 
 ## Marketing URL (opcionális)
 
 ```
-https://<GITHUB_USERNAME>.github.io/wordmatch-legal/
+https://alabalint.github.io/wordmatch-legal/
 ```
 
 ## Privacy Policy URL
 
 ```
-https://<GITHUB_USERNAME>.github.io/wordmatch-legal/privacy.html
+https://alabalint.github.io/wordmatch-legal/privacy.html
 ```
 
 ---
@@ -89,7 +89,7 @@ https://<GITHUB_USERNAME>.github.io/wordmatch-legal/privacy.html
 ## App Privacy kérdőív — útmutató
 
 App Store Connect → App Privacy szekcióban a kérdésekre az alábbi válaszok indokoltak a
-jelenlegi kódbázis alapján ([docs/ARCHITECTURE.md](https://github.com/<GITHUB_USERNAME>/WordMatch/blob/main/docs/ARCHITECTURE.md)):
+jelenlegi kódbázis alapján ([docs/ARCHITECTURE.md](https://github.com/alabalint/WordMatch/blob/main/docs/ARCHITECTURE.md)):
 
 - **"Do you or your third-party partners collect data from this app?"** → **No** (Nem gyűjt
   adatot). Indoklás: nincs saját szerver, nincs analitika/hirdetés SDK; a CloudKit-szinkron a
