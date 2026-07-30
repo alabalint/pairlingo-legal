@@ -1,11 +1,11 @@
-# WordMatch — App Store metaadatok
+# PairLingo — App Store metaadatok
 
 Ez a dokumentum az App Store Connect kitöltéséhez tartalmaz kész szövegjavaslatokat.
 Másold be a megfelelő mezőkbe App Store Connectben.
 
 ## Alapadatok
 
-- **App neve:** WordMatch
+- **App neve:** PairLingo
 - **Alcím (subtitle, max 30 karakter):** Szópárosító nyelvtanulás
 - **Kategória:** Education (Oktatás) — másodlagos: Games / Word (opcionális)
 - **Ár:** Ingyenes (javaslat; állítsd be igény szerint)
@@ -15,7 +15,7 @@ Másold be a megfelelő mezőkbe App Store Connectben.
 ```
 Tanulj bármilyen nyelvpárt egyszerűen, szórakoztatva!
 
-A WordMatch egy natív, letisztult szópárosító alkalmazás: a szavak két kevert oszlopban
+A PairLingo egy natív, letisztult szópárosító alkalmazás: a szavak két kevert oszlopban
 jelennek meg, neked kell megtalálnod a hozzájuk tartozó párokat. A rendszer megjegyzi,
 mely szavaknál hibázol gyakrabban, és külön "Tanulandó szavak" módban külön rákérdez ezekre
 — így pont azt gyakorlod, amire tényleg szükséged van.
@@ -40,7 +40,7 @@ készülékeden és a saját iCloud-fiókodban tárolódik.
 ```
 Learn any language pair, made simple and fun.
 
-WordMatch is a clean, native word-matching app: words appear shuffled in two columns, and
+PairLingo is a clean, native word-matching app: words appear shuffled in two columns, and
 your job is to find the matching pairs. The app remembers which words trip you up most
 often and quizzes you on those separately in a dedicated "Words to review" mode — so you
 practice exactly what you need.
@@ -69,19 +69,19 @@ nyelvtanulás,szavak,szótanulás,memória,szópárosító,angol,vocabulary,flas
 ## Support URL
 
 ```
-https://alabalint.github.io/wordmatch-legal/
+https://alabalint.github.io/pairlingo-legal/
 ```
 
 ## Marketing URL (opcionális)
 
 ```
-https://alabalint.github.io/wordmatch-legal/
+https://alabalint.github.io/pairlingo-legal/
 ```
 
 ## Privacy Policy URL
 
 ```
-https://alabalint.github.io/wordmatch-legal/privacy.html
+https://alabalint.github.io/pairlingo-legal/privacy.html
 ```
 
 ---
@@ -89,7 +89,7 @@ https://alabalint.github.io/wordmatch-legal/privacy.html
 ## App Privacy kérdőív — útmutató
 
 App Store Connect → App Privacy szekcióban a kérdésekre az alábbi válaszok indokoltak a
-jelenlegi kódbázis alapján ([docs/ARCHITECTURE.md](https://github.com/alabalint/WordMatch/blob/main/docs/ARCHITECTURE.md)):
+jelenlegi kódbázis alapján ([docs/ARCHITECTURE.md](https://github.com/alabalint/PairLingo/blob/main/docs/ARCHITECTURE.md)):
 
 - **"Do you or your third-party partners collect data from this app?"** → **No** (Nem gyűjt
   adatot). Indoklás: nincs saját szerver, nincs analitika/hirdetés SDK; a CloudKit-szinkron a

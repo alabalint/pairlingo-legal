@@ -1,6 +1,6 @@
-# WordMatch — Legal & App Store dokumentumok
+# PairLingo — Legal & App Store dokumentumok
 
-Ez a nyilvános repó a [WordMatch](https://github.com/alabalint/WordMatch) iOS alkalmazás
+Ez a nyilvános repó a [PairLingo](https://github.com/alabalint/PairLingo) iOS alkalmazás
 App Store-beadásához szükséges publikus dokumentumokat tartalmazza:
 
 - [`index.html`](index.html) — támogatási / kapcsolat oldal (App Store Connect "Support URL")
