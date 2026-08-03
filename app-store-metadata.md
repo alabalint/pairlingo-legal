@@ -6,64 +6,100 @@ Másold be a megfelelő mezőkbe App Store Connectben.
 ## Alapadatok
 
 - **App neve:** PairLingo
-- **Alcím (subtitle, max 30 karakter):** Szópárosító nyelvtanulás
+- **Alcím (subtitle, max 30 karakter):**
+  - magyar: `Bármilyen nyelvpár tanulása`
+  - angol: `Any Language Pair, Your Words`
 - **Kategória:** Education (Oktatás) — másodlagos: Games / Word (opcionális)
 - **Ár:** Ingyenes (javaslat; állítsd be igény szerint)
 
 ## Leírás (magyar)
 
 ```
-Tanulj bármilyen nyelvpárt egyszerűen, szórakoztatva!
+A PairLingo nem egy sablon szókártya-app — bármilyen nyelvpárt megtanulhatsz vele,
+a saját tempódban, a saját szavaiddal.
 
-A PairLingo egy natív, letisztult szópárosító alkalmazás: a szavak két kevert oszlopban
-jelennek meg, neked kell megtalálnod a hozzájuk tartozó párokat. A rendszer megjegyzi,
-mely szavaknál hibázol gyakrabban, és külön "Tanulandó szavak" módban külön rákérdez ezekre
-— így pont azt gyakorlod, amire tényleg szükséged van.
+Amiben tényleg más, mint a hasonló appok:
 
-FUNKCIÓK
-• Tetszőleges nyelvpár — nem csak angol-magyar, bármilyen két nyelv kombinálható
-• CSV-importálás okos ütközéskezeléssel: elgépelés-javítás, duplikátumszűrés, csoportcsere
-• Kézi szóhozzáadás, csoportkezelés (szerkesztés, törlés, átnevezés)
+🌍 VALÓBAN TETSZŐLEGES NYELVPÁR
+Nem csak angol-magyar. Bármelyik két nyelvet kombinálhatod — spanyol-japán, német-orosz,
+vagy bármi mást, amit tanulsz. 24 nyelv közül választhatsz kézi szóhozzáadásnál, de a
+CSV-importnál gyakorlatilag korlátlan a lehetőség.
+
+📥 OKOS CSV-IMPORT, NEM CSAK "FELTÖLTÉS"
+A legtöbb hasonló app egyszerűen beolvassa a fájlt. A PairLingo felismeri, ha egy szó
+fordítása megváltozott (elgépelés-javítás), figyelmeztet a hasonló nevű duplikált
+csoportokra, és soronként rád bízza, mit tegyen az ütköző szavakkal — frissítsen, vagy
+vegye fel újként.
+
+🔒 IGAZI ADATVÉDELEM, NEM CSAK ÍGÉRET
+Nincs backend szerver. Nincs fiókregisztráció. Nincs hirdetés, nincs nyomkövető kód.
+A szavaid a saját iCloud-fiókodban szinkronizálódnak a te eszközeid között — a
+fejlesztőnek fizikai lehetősége sincs hozzáférni az adataidhoz.
+
+🎯 CÉLZOTT ISMÉTLÉS
+A rendszer megjegyzi, mely szavaknál hibázol gyakrabban, és külön "Tanulandó szavak"
+módban rákérdez ezekre — pont azt gyakorlod, amire tényleg szükséged van.
+
+🌐 VALÓDI TÖBBNYELVŰ FELÜLET
+Nemcsak a tananyag, maga az alkalmazás kezelőfelülete is 6 nyelven érhető el (magyar,
+angol, német, spanyol, francia, olasz) — azonnal váltható, újraindítás nélkül.
+
+TOVÁBBI FUNKCIÓK
+• Kézi szóhozzáadás, csoportkezelés (szerkesztés, törlés, átnevezés, összevonás)
 • Statisztika: napi gyakorlási sorozat, csoportonkénti pontosság
 • 6 letisztult, matt színtéma
-• Az app felülete 6 nyelven elérhető: magyar, angol, német, spanyol, francia, olasz
-• iCloud-szinkronizáció — a szavaid automatikusan elérhetők minden eszközödön
-• Nincs hirdetés, nincs nyomkövetés, nincs fiókregisztráció
+• Beépített súgó
 • Mellékelt kész szólista: 350 szavas B2 (felső-középfokú) angol-magyar alapszókészlet
 
-Az adataid mindig a tiéd maradnak: nincs szerver, nincs adatgyűjtés — minden a
-készülékeden és a saját iCloud-fiókodban tárolódik.
+A PairLingo-t egy fejlesztő írta, egyedi kódbázissal — nem sablonból vásárolt appról van szó.
 ```
 
 ## Description (English)
 
 ```
-Learn any language pair, made simple and fun.
+PairLingo isn't a template flashcard app — it's built to learn any language pair, at
+your own pace, with your own words.
 
-PairLingo is a clean, native word-matching app: words appear shuffled in two columns, and
-your job is to find the matching pairs. The app remembers which words trip you up most
-often and quizzes you on those separately in a dedicated "Words to review" mode — so you
-practice exactly what you need.
+What actually sets it apart:
 
-FEATURES
-• Any language pair — not limited to English-Hungarian, combine any two languages
-• Smart CSV import with conflict handling: typo fixes, duplicate detection, group replace
-• Manual word entry, group management (edit, delete, rename)
+🌍 TRULY ANY LANGUAGE PAIR
+Not just English-Hungarian. Combine any two languages — Spanish-Japanese, German-Russian,
+whatever you're learning. Pick from 24 curated languages for manual entry, or import a CSV
+for virtually unlimited language combinations.
+
+📥 SMART CSV IMPORT, NOT JUST "UPLOAD"
+Most similar apps just read the file. PairLingo detects when a word's translation changed
+(typo fix), warns you about accidentally-duplicated groups with similar names, and lets you
+decide row by row how to resolve conflicts — update the existing word, or add it as new.
+
+🔒 REAL PRIVACY, NOT JUST A PROMISE
+No backend server. No account required. No ads, no tracking code. Your words sync across
+your own devices through your own iCloud account — the developer has no technical way to
+access your data, even if they wanted to.
+
+🎯 TARGETED REVIEW
+The app remembers which words trip you up most often and quizzes you on those separately
+in a dedicated "Words to review" mode — so you practice exactly what you need.
+
+🌐 A GENUINELY MULTILINGUAL INTERFACE
+Not just the content — the app's own interface is available in 6 languages (English,
+Hungarian, German, Spanish, French, Italian), switchable instantly with no relaunch.
+
+MORE FEATURES
+• Manual word entry, group management (edit, delete, rename, merge)
 • Stats: daily practice streak, per-group accuracy
 • 6 clean, matte color themes
-• App interface available in 6 languages: Hungarian, English, German, Spanish, French, Italian
-• iCloud sync — your words are automatically available on all your devices
-• No ads, no tracking, no account required
+• Built-in help
 • Includes a ready-made word list: a 350-word B2 (upper-intermediate) English-Hungarian set
 
-Your data stays yours: no server, no data collection — everything lives on your device and
-your own iCloud account.
+PairLingo is built by an independent developer with an original codebase — not a
+purchased template.
 ```
 
 ## Kulcsszavak (keywords, max 100 karakter, vesszővel elválasztva, App Store Connect mezőben)
 
 ```
-nyelvtanulás,szavak,szótanulás,memória,szópárosító,angol,vocabulary,flashcard,language,quiz
+nyelvtanulás,szótanulás,nyelvpár,memória,szópárosító,vocabulary,language pair,csv import,quiz
 ```
 
 ## Support URL
