@@ -3,70 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PairLingo – Támogatás</title>
-<style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 2.5rem 1.5rem 4rem;
-    line-height: 1.6;
-    color: #1c1c1e;
-    background: #ffffff;
-  }
-  @media (prefers-color-scheme: dark) {
-    body { color: #f2f2f7; background: #000000; }
-    a { color: #64d2ff; }
-    .card { background: #1c1c1e; border-color: #2c2c2e; }
-  }
-  h1 { font-size: 1.9rem; margin-bottom: 0.2rem; }
-  .subtitle { color: #8e8e93; margin-top: 0; margin-bottom: 2rem; }
-  h2 { font-size: 1.3rem; margin-top: 2.2rem; }
-  a { color: #007aff; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .card {
-    border: 1px solid #e5e5ea;
-    border-radius: 14px;
-    padding: 1.2rem 1.4rem;
-    margin: 1.2rem 0;
-    background: #f9f9fb;
-  }
-  .lang-toggle { margin-bottom: 2rem; font-size: 0.9rem; }
-  footer { margin-top: 3rem; color: #8e8e93; font-size: 0.85rem; }
-</style>
+<title>PairLingo — Bármilyen nyelvpár tanulása / Any Language Pair, Your Words</title>
+<meta name="description" content="PairLingo: natív iOS szópárosító nyelvtanuló app tetszőleges nyelvpárhoz, saját szavakból. / PairLingo: a native iOS word-matching app for any language pair, built from your own words.">
+<link rel="icon" href="assets/icon-1024.png">
+<link rel="apple-touch-icon" href="assets/icon-1024.png">
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<h1>PairLingo</h1>
-<p class="subtitle">Szópárosító nyelvtanuló alkalmazás iOS-re</p>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/icon-1024.png" alt="PairLingo">
+      PairLingo
+    </a>
+    <nav class="site-nav">
+      <span class="nav-links">
+        <a href="#funkciok"><span data-lang="hu">Funkciók</span><span data-lang="en">Features</span></a>
+        <a href="#screenshotok"><span data-lang="hu">Képernyőképek</span><span data-lang="en">Screenshots</span></a>
+        <a href="support.html"><span data-lang="hu">Támogatás</span><span data-lang="en">Support</span></a>
+        <a href="privacy.html"><span data-lang="hu">Adatvédelem</span><span data-lang="en">Privacy</span></a>
+      </span>
+      <span class="lang-switch">
+        <button data-set-lang="hu">HU</button>
+        <button data-set-lang="en">EN</button>
+      </span>
+    </nav>
+  </div>
+</header>
 
-<h2>Kapcsolat / Support</h2>
-<div class="card">
-  <p><strong>Fejlesztő:</strong> Alasztics Bálint</p>
-  <p><strong>E-mail:</strong> <a href="mailto:alasztics.balint@gmail.com">alasztics.balint@gmail.com</a></p>
-  <p>Hibajelentéssel, kérdéssel vagy javaslattal kapcsolatban írj bátran a fenti e-mail címre — igyekszem hamar válaszolni.</p>
-</div>
+<main>
 
-<h2>Dokumentumok</h2>
-<ul>
-  <li><a href="privacy.html">Adatvédelmi szabályzat (magyar / English)</a></li>
-</ul>
+  <section class="hero">
+    <div class="wrap">
+      <img class="icon" src="assets/icon-1024.png" alt="PairLingo ikon">
+      <h1>PairLingo</h1>
 
-<h2>Az alkalmazásról</h2>
-<p>
-  A PairLingo egy egyszerű, natív iOS szópárosító (memóriajáték-szerű) alkalmazás nyelvtanuláshoz.
-  CSV-ből importálhatók a szópárok tetszőleges nyelvpárban és témakörben, a rendszer pedig követi,
-  mely szavaknál hibázol gyakran, és külön gyakorló módban rákérdez ezekre.
-</p>
-<p>
-  Az alkalmazás nem használ saját szervert vagy külső elemzőeszközt — minden adat a készülékeden,
-  illetve (ha bekapcsolod) a saját iCloud-fiókodon keresztül szinkronizálva tárolódik.
-</p>
+      <div data-lang="hu">
+        <p class="tagline">Bármilyen nyelvpár tanulása, a saját tempódban, a saját szavaiddal — nem egy sablon szókártya-app.</p>
+      </div>
+      <div data-lang="en">
+        <p class="tagline">Learn any language pair, at your own pace, with your own words — not a template flashcard app.</p>
+      </div>
 
-<footer>
-  © 2026 Alasztics Bálint · PairLingo
+      <div class="badge-row">
+        <span class="store-badge disabled" aria-disabled="true">
+          <span class="apple-mark"></span>
+          <span class="store-text" data-lang="hu">
+            <small>Hamarosan</small>
+            <strong>az App Store-ban</strong>
+          </span>
+          <span class="store-text" data-lang="en">
+            <small>Coming soon on the</small>
+            <strong>App Store</strong>
+          </span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section id="funkciok">
+    <div class="wrap">
+      <div data-lang="hu">
+        <h2 class="section-title">Amiben tényleg más</h2>
+        <p class="section-sub">Nem egy újabb sablon szókártya-app — öt dolog, amiben a PairLingo tényleg különbözik.</p>
+      </div>
+      <div data-lang="en">
+        <h2 class="section-title">What actually sets it apart</h2>
+        <p class="section-sub">Not just another template flashcard app — five things PairLingo genuinely does differently.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <span class="emoji">🌍</span>
+          <div data-lang="hu">
+            <h3>Valóban tetszőleges nyelvpár</h3>
+            <p>Nem csak angol–magyar. Bármelyik két nyelvet kombinálhatod — spanyol–japán, német–orosz, vagy bármi mást, amit tanulsz.</p>
+          </div>
+          <div data-lang="en">
+            <h3>Truly any language pair</h3>
+            <p>Not just English–Hungarian. Combine any two languages — Spanish–Japanese, German–Russian, whatever you're learning.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span class="emoji">📥</span>
+          <div data-lang="hu">
+            <h3>Okos CSV-import</h3>
+            <p>Felismeri, ha egy szó fordítása megváltozott, figyelmeztet a hasonló nevű duplikált csoportokra, és soronként rád bízza, mit tegyen az ütköző szavakkal.</p>
+          </div>
+          <div data-lang="en">
+            <h3>Smart CSV import</h3>
+            <p>Detects when a word's translation changed, warns about accidentally-duplicated groups, and lets you decide row by row how to resolve conflicts.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span class="emoji">🔒</span>
+          <div data-lang="hu">
+            <h3>Igazi adatvédelem</h3>
+            <p>Nincs backend szerver, nincs fiókregisztráció, nincs hirdetés. A szavaid a saját iCloud-fiókodban szinkronizálódnak — a fejlesztőnek fizikai lehetősége sincs hozzáférni.</p>
+          </div>
+          <div data-lang="en">
+            <h3>Real privacy</h3>
+            <p>No backend server, no account, no ads. Your words sync through your own iCloud account — the developer has no technical way to access your data.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span class="emoji">🎯</span>
+          <div data-lang="hu">
+            <h3>Célzott ismétlés</h3>
+            <p>A rendszer megjegyzi, mely szavaknál hibázol gyakrabban, és külön "Tanulandó szavak" módban rákérdez ezekre.</p>
+          </div>
+          <div data-lang="en">
+            <h3>Targeted review</h3>
+            <p>The app remembers which words trip you up most often and quizzes you on those separately in a dedicated "Words to review" mode.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span class="emoji">🌐</span>
+          <div data-lang="hu">
+            <h3>Valódi többnyelvű felület</h3>
+            <p>Nemcsak a tananyag — maga az alkalmazás kezelőfelülete is 6 nyelven érhető el, azonnal váltható, újraindítás nélkül.</p>
+          </div>
+          <div data-lang="en">
+            <h3>A genuinely multilingual interface</h3>
+            <p>Not just the content — the app's own interface is available in 6 languages, switchable instantly with no relaunch.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <span class="emoji">📚</span>
+          <div data-lang="hu">
+            <h3>5 kész alapszókészlet</h3>
+            <p>350 szavas, B2 szintű, angol párosítású alapkészlet magyar, spanyol, német, portugál és olasz nyelvhez — egy koppintással importálható.</p>
+          </div>
+          <div data-lang="en">
+            <h3>5 built-in starter word lists</h3>
+            <p>350-word, B2-level, English-paired starter sets for Hungarian, Spanish, German, Portuguese, and Italian — importable with one tap.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screenshotok" class="alt">
+    <div class="wrap">
+      <div data-lang="hu">
+        <h2 class="section-title">Így néz ki</h2>
+        <p class="section-sub">Témakörök áttekintése, a párosítós játék, és a haladásod egy pillantásra.</p>
+      </div>
+      <div data-lang="en">
+        <h2 class="section-title">What it looks like</h2>
+        <p class="section-sub">Your topics at a glance, the matching game, and your progress in one view.</p>
+      </div>
+
+      <div class="showcase">
+        <figure>
+          <img src="screenshots/01-topics.png" alt="Témakörök / Topics">
+          <figcaption data-lang="hu">Témakörök</figcaption>
+          <figcaption data-lang="en">Topics</figcaption>
+        </figure>
+        <figure>
+          <img src="screenshots/02-game.png" alt="Párosítós játék / Matching game">
+          <figcaption data-lang="hu">Párosítós játék</figcaption>
+          <figcaption data-lang="en">Matching game</figcaption>
+        </figure>
+        <figure>
+          <img src="screenshots/03-stats.png" alt="Statisztika / Statistics">
+          <figcaption data-lang="hu">Statisztika</figcaption>
+          <figcaption data-lang="en">Statistics</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div data-lang="hu">
+        <h2 class="section-title">További funkciók</h2>
+      </div>
+      <div data-lang="en">
+        <h2 class="section-title">More features</h2>
+      </div>
+
+      <ul class="more-list" data-lang="hu">
+        <li>Kézi szóhozzáadás, csoportkezelés (szerkesztés, törlés, átnevezés, összevonás)</li>
+        <li>Napi gyakorlási sorozat ("streak"), csoportonkénti pontosság</li>
+        <li>6 letisztult, matt színtéma</li>
+        <li>Beépített súgó</li>
+        <li>Nyelvpár-alapú szűrés — semmilyen szavad nem vész el váltáskor</li>
+        <li>Induláskori nyelvválasztó, ami azonnal felajánlja a megfelelő alapszókészletet</li>
+      </ul>
+      <ul class="more-list" data-lang="en">
+        <li>Manual word entry, group management (edit, delete, rename, merge)</li>
+        <li>Daily practice streak, per-group accuracy</li>
+        <li>6 clean, matte color themes</li>
+        <li>Built-in help</li>
+        <li>Language-pair based filtering — no words are ever lost when you switch</li>
+        <li>A first-launch language picker that immediately offers the matching starter list</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div data-lang="hu">© 2026 Alasztics Bálint · PairLingo</div>
+    <div data-lang="en">© 2026 Bálint Alasztics · PairLingo</div>
+    <nav>
+      <a href="support.html"><span data-lang="hu">Támogatás</span><span data-lang="en">Support</span></a>
+      <a href="privacy.html"><span data-lang="hu">Adatvédelem</span><span data-lang="en">Privacy Policy</span></a>
+      <a href="mailto:alasztics.balint@gmail.com">alasztics.balint@gmail.com</a>
+    </nav>
+  </div>
 </footer>
 
+<script src="assets/lang.js"></script>
 </body>
 </html>

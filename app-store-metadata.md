@@ -105,20 +105,24 @@ nyelvtanulás,szótanulás,nyelvpár,memória,szópárosító,vocabulary,languag
 ## Support URL
 
 ```
-https://alabalint.github.io/pairlingo-legal/
+https://pairlingo.hu/support.html
 ```
 
 ## Marketing URL (opcionális)
 
 ```
-https://alabalint.github.io/pairlingo-legal/
+https://pairlingo.hu/
 ```
 
 ## Privacy Policy URL
 
 ```
-https://alabalint.github.io/pairlingo-legal/privacy.html
+https://pairlingo.hu/privacy.html
 ```
+
+Megjegyzés: a fenti egyedi domain (`pairlingo.hu`) a GitHub Pages `CNAME` fájlon keresztül van
+beállítva — amíg a DNS-rekordok nincsenek beállítva/nem terjedtek el, a
+`https://alabalint.github.io/pairlingo-legal/` cím is működik ideiglenes alternatívaként.
 
 ---
 
