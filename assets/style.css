@@ -224,14 +224,18 @@ p.section-sub {
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.1rem;
 }
 @media (max-width: 900px) {
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  /* 9 cards don't divide evenly by 2 — stretch the last one so it
+     doesn't sit alone, off-center, in its own row. */
+  .feature-card:last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 520px) {
   .feature-grid { grid-template-columns: 1fr; }
+  .feature-card:last-child { grid-column: auto; }
 }
 
 .feature-card {
