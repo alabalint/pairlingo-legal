@@ -274,18 +274,31 @@ p.section-sub {
 
 /* Showcase / screenshots */
 
+/* Wider than the site's standard 1040px .wrap: five phone screenshots side by
+   side need more room, and a fixed-width row inside the narrower wrap either
+   wraps awkwardly (an orphaned last image, centered, on its own half-empty
+   row) or leaves the section looking narrow on a wide desktop viewport. */
+#screenshotok .wrap {
+  max-width: 1320px;
+}
+
 .showcase {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.6rem;
-  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .showcase { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .showcase { grid-template-columns: repeat(2, 1fr); }
 }
 .showcase figure {
   margin: 0;
   text-align: center;
 }
 .showcase img {
-  width: 220px;
+  width: 100%;
   border-radius: 22px;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
