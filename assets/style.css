@@ -388,3 +388,49 @@ footer.site-footer a:hover { color: var(--text); }
   .site-nav .nav-links { display: none; }
   .more-list { columns: 1; }
 }
+
+/* Word-list sharing page */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--brand-gradient);
+  color: #fff !important;
+  border-radius: 14px;
+  padding: 0.8rem 1.4rem;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.btn-primary:hover { opacity: 0.92; }
+
+.note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.8rem;
+}
+
+.wordlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+.wordlist-table td {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.wordlist-table td.wl-size {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: right;
+  white-space: nowrap;
+  padding-left: 1rem;
+}
+.wordlist-table a.wl-download {
+  font-weight: 600;
+}
+.wordlist-status {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}

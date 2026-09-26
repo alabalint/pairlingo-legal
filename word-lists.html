@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PairLingo — Közösségi szókészletek / Community Word Lists</title>
+<meta name="description" content="Ossz meg és tölts le PairLingo szókészlet CSV fájlokat, amiket más felhasználók készítettek. / Share and download PairLingo word-list CSV files made by other users.">
+<link rel="icon" href="assets/icon-1024.png">
+<link rel="apple-touch-icon" href="assets/icon-1024.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <img src="assets/icon-1024.png" alt="PairLingo">
+      PairLingo
+    </a>
+    <nav class="site-nav">
+      <span class="nav-links">
+        <a href="index.html#funkciok"><span data-lang="hu">Funkciók</span><span data-lang="en">Features</span></a>
+        <a href="index.html#screenshotok"><span data-lang="hu">Képernyőképek</span><span data-lang="en">Screenshots</span></a>
+        <a href="word-lists.html"><span data-lang="hu">Szókészletek</span><span data-lang="en">Word lists</span></a>
+        <a href="support.html"><span data-lang="hu">Támogatás</span><span data-lang="en">Support</span></a>
+        <a href="privacy.html"><span data-lang="hu">Adatvédelem</span><span data-lang="en">Privacy</span></a>
+      </span>
+      <span class="lang-switch">
+        <button data-set-lang="hu">HU</button>
+        <button data-set-lang="en">EN</button>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="page-header">
+    <div data-lang="hu">
+      <h1>Közösségi szókészletek</h1>
+      <p class="subtitle">Mások által készített, tetszőleges témájú CSV szókészletek — töltsd le, vagy oszd meg a sajátodat.</p>
+    </div>
+    <div data-lang="en">
+      <h1>Community word lists</h1>
+      <p class="subtitle">CSV word lists on any topic, made by other users — download one, or share your own.</p>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div data-lang="hu">
+      <h2>Feltöltés</h2>
+    </div>
+    <div data-lang="en">
+      <h2>Upload</h2>
+    </div>
+
+    <div class="card">
+      <div data-lang="hu">
+        <p>A gomb a GitHub saját feltöltő felületére visz, ami kizárólag erre a <code>custom-word-lists</code> mappára van korlátozva — máshova a repóban nem tudsz vele írni. A fájlod egy Pull Requestként érkezik be, amit a fejlesztő átnéz, mielőtt megjelenne itt a letölthetők között.</p>
+        <p><a class="btn-primary" href="https://github.com/alabalint/PairLingo/upload/main/custom-word-lists" target="_blank" rel="noopener">Szókészlet feltöltése a GitHubon &rarr;</a></p>
+        <p class="note">Ehhez egy (ingyenes) GitHub-fiók szükséges. A CSV formátum: <code>nyelv1,nyelv2,csoport</code>, opcionálisan egy negyedik, példamondat-oszloppal — lásd a <a href="https://github.com/alabalint/PairLingo#csv-form%C3%A1tum-r%C3%B6viden" target="_blank" rel="noopener">részletes leírást</a>.</p>
+      </div>
+      <div data-lang="en">
+        <p>The button takes you to GitHub's own upload interface, restricted specifically to this <code>custom-word-lists</code> folder — it can't write anywhere else in the repo. Your file arrives as a Pull Request, which the developer reviews before it shows up here among the downloadable ones.</p>
+        <p><a class="btn-primary" href="https://github.com/alabalint/PairLingo/upload/main/custom-word-lists" target="_blank" rel="noopener">Upload a word list on GitHub &rarr;</a></p>
+        <p class="note">This requires a (free) GitHub account. CSV format: <code>language1,language2,group</code>, with an optional fourth column for an example sentence — see the <a href="https://github.com/alabalint/PairLingo#csv-form%C3%A1tum-r%C3%B6viden" target="_blank" rel="noopener">full format description</a>.</p>
+      </div>
+    </div>
+
+    <div data-lang="hu">
+      <h2>Letöltés</h2>
+      <p>A jelenleg elérhető, jóváhagyott szókészletek:</p>
+    </div>
+    <div data-lang="en">
+      <h2>Download</h2>
+      <p>Currently available, approved word lists:</p>
+    </div>
+
+    <div class="card">
+      <table class="wordlist-table">
+        <tbody id="wordlist-table"></tbody>
+      </table>
+      <p class="wordlist-status" id="wordlist-status">
+        <span data-lang="hu">Betöltés…</span>
+        <span data-lang="en">Loading…</span>
+      </p>
+    </div>
+
+  </div>
+
+  <a class="back-link" href="index.html">
+    <span data-lang="hu">&larr; Vissza a főoldalra</span>
+    <span data-lang="en">&larr; Back to home</span>
+  </a>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div data-lang="hu">© 2026 Alasztics Bálint · PairLingo</div>
+    <div data-lang="en">© 2026 Bálint Alasztics · PairLingo</div>
+    <nav>
+      <a href="support.html"><span data-lang="hu">Támogatás</span><span data-lang="en">Support</span></a>
+      <a href="privacy.html"><span data-lang="hu">Adatvédelem</span><span data-lang="en">Privacy Policy</span></a>
+      <a href="mailto:alasztics.balint@gmail.com">alasztics.balint@gmail.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/lang.js"></script>
+<script src="assets/word-lists.js"></script>
+</body>
+</html>
