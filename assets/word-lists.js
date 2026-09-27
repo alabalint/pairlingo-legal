@@ -11,7 +11,40 @@
   var BROWSE_URL = "https://github.com/alabalint/pairlingo-wordlists/tree/main/word-lists";
 
   var statusEl = document.getElementById("wordlist-status");
-  var tableEl = document.getElementById("wordlist-table");
+  var groupsEl = document.getElementById("wordlist-groups");
+
+  // The same 24 curated languages PairLingo itself offers (see
+  // Sources/PairLingo/Models/SupportedLanguage.swift) — used to spot a
+  // language pair in a filename and to show its name in both site languages.
+  // "chinese"/"mandarin" are both accepted as filename tokens for the same
+  // language.
+  var LANGUAGE_NAMES = {
+    english: { en: "English", hu: "Angol" },
+    spanish: { en: "Spanish", hu: "Spanyol" },
+    chinese: { en: "Chinese (Mandarin)", hu: "Kínai (mandarin)" },
+    mandarin: { en: "Chinese (Mandarin)", hu: "Kínai (mandarin)" },
+    hindi: { en: "Hindi", hu: "Hindi" },
+    french: { en: "French", hu: "Francia" },
+    arabic: { en: "Arabic", hu: "Arab" },
+    portuguese: { en: "Portuguese", hu: "Portugál" },
+    russian: { en: "Russian", hu: "Orosz" },
+    german: { en: "German", hu: "Német" },
+    japanese: { en: "Japanese", hu: "Japán" },
+    korean: { en: "Korean", hu: "Koreai" },
+    italian: { en: "Italian", hu: "Olasz" },
+    turkish: { en: "Turkish", hu: "Török" },
+    vietnamese: { en: "Vietnamese", hu: "Vietnámi" },
+    polish: { en: "Polish", hu: "Lengyel" },
+    dutch: { en: "Dutch", hu: "Holland" },
+    ukrainian: { en: "Ukrainian", hu: "Ukrán" },
+    romanian: { en: "Romanian", hu: "Román" },
+    swedish: { en: "Swedish", hu: "Svéd" },
+    greek: { en: "Greek", hu: "Görög" },
+    czech: { en: "Czech", hu: "Cseh" },
+    hungarian: { en: "Hungarian", hu: "Magyar" },
+    hebrew: { en: "Hebrew", hu: "Héber" },
+    thai: { en: "Thai", hu: "Thai" }
+  };
 
   // lang.js sets <html lang="hu|en"> synchronously on page load and re-runs
   // its own [data-lang] toggling on every future language-switch click (it
@@ -41,8 +74,79 @@
     return Math.round(bytes / 1024) + " KB";
   }
 
-  function renderList(files) {
-    tableEl.innerHTML = "";
+  // Suggested filename pattern is "{level-or-topic}_{language1}_{language2}.csv"
+  // (see the pairlingo-wordlists README) — but the topic prefix, case and any
+  // trailing suffix (e.g. "..._500_extra.csv") vary, so instead of assuming a
+  // fixed position, this just looks for exactly two recognized language names
+  // anywhere among the "_"/"-"-separated tokens. A file that doesn't yield
+  // exactly two falls into the "Other" group rather than being mis-grouped.
+  function languagePairOf(filename) {
+    var base = filename.replace(/\.csv$/i, "");
+    var tokens = base.toLowerCase().split(/[^a-z]+/).filter(Boolean);
+    var seenCanonical = {};
+    var matched = [];
+    tokens.forEach(function (token) {
+      var info = LANGUAGE_NAMES[token];
+      if (info && !seenCanonical[info.en]) {
+        seenCanonical[info.en] = true;
+        matched.push(info);
+      }
+    });
+    return matched.length === 2 ? matched : null;
+  }
+
+  // Groups by language pair, keyed on a language-neutral (English-name)
+  // order so the same pair always collapses into one group regardless of
+  // which language happens to come first in a given filename. The *display*
+  // order within each heading is resolved separately per site language in
+  // `groupHeadingText`, since alphabetical order in English and Hungarian
+  // doesn't always agree (e.g. "Chinese"/"Kínai" vs "Dutch"/"Holland").
+  function groupFiles(files) {
+    var byKey = {};
+    var other = [];
+    files.forEach(function (file) {
+      var pair = languagePairOf(file.name);
+      if (!pair) {
+        other.push(file);
+        return;
+      }
+      var ordered = pair.slice().sort(function (a, b) { return a.en.localeCompare(b.en); });
+      var key = ordered[0].en + "|" + ordered[1].en;
+      if (!byKey[key]) byKey[key] = { langs: pair, files: [] };
+      byKey[key].files.push(file);
+    });
+
+    var groups = Object.keys(byKey).sort().map(function (key) { return byKey[key]; });
+    groups.forEach(function (group) {
+      group.files.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    });
+    other.sort(function (a, b) { return a.name.localeCompare(b.name); });
+    return { groups: groups, other: other };
+  }
+
+  function groupHeadingText(langs, lang) {
+    var ordered = langs.slice().sort(function (a, b) { return a[lang].localeCompare(b[lang], lang); });
+    return ordered[0][lang] + " ↔ " + ordered[1][lang];
+  }
+
+  function makeGroupHeading(langs) {
+    var heading = document.createElement("h3");
+    heading.className = "wordlist-group-heading";
+    if (langs) {
+      heading.appendChild(makeBilingualSpan("hu", groupHeadingText(langs, "hu")));
+      heading.appendChild(makeBilingualSpan("en", groupHeadingText(langs, "en")));
+    } else {
+      heading.appendChild(makeBilingualSpan("hu", "Egyéb"));
+      heading.appendChild(makeBilingualSpan("en", "Other"));
+    }
+    return heading;
+  }
+
+  function makeTable(files) {
+    var table = document.createElement("table");
+    table.className = "wordlist-table";
+    var tbody = document.createElement("tbody");
+
     files.forEach(function (file) {
       var row = document.createElement("tr");
 
@@ -60,8 +164,26 @@
 
       row.appendChild(nameCell);
       row.appendChild(sizeCell);
-      tableEl.appendChild(row);
+      tbody.appendChild(row);
     });
+
+    table.appendChild(tbody);
+    return table;
+  }
+
+  function renderGroups(files) {
+    groupsEl.innerHTML = "";
+    var grouped = groupFiles(files);
+
+    grouped.groups.forEach(function (group) {
+      groupsEl.appendChild(makeGroupHeading(group.langs));
+      groupsEl.appendChild(makeTable(group.files));
+    });
+
+    if (grouped.other.length > 0) {
+      groupsEl.appendChild(makeGroupHeading(null));
+      groupsEl.appendChild(makeTable(grouped.other));
+    }
   }
 
   fetch(API_URL, { headers: { Accept: "application/vnd.github+json" } })
@@ -73,8 +195,7 @@
       var files = (Array.isArray(entries) ? entries : [])
         .filter(function (e) {
           return e && e.type === "file" && typeof e.name === "string" && /\.csv$/i.test(e.name);
-        })
-        .sort(function (a, b) { return a.name.localeCompare(b.name); });
+        });
 
       if (files.length === 0) {
         setStatus(
@@ -84,7 +205,7 @@
         return;
       }
 
-      renderList(files);
+      renderGroups(files);
       statusEl.textContent = "";
     })
     .catch(function () {
