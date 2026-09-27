@@ -1,11 +1,14 @@
-// Lists the CSV files in the PairLingo repo's custom-word-lists/ folder, using
-// GitHub's public, read-only Contents API — no auth, no token, no server of
-// ours involved. Renders everything via textContent/DOM APIs (never
-// innerHTML with API-derived strings), so nothing the API returns can inject
-// markup into this page.
+// Lists the CSV files in the dedicated, public pairlingo-wordlists repo's
+// word-lists/ folder, using GitHub's public, read-only Contents API — no
+// auth, no token, no server of ours involved. This is a separate repo from
+// the (private) PairLingo app source, specifically so this page can work for
+// anonymous visitors: the private repo's API/upload URLs 404 for anyone
+// without access, which a public repo doesn't. Renders everything via
+// textContent/DOM APIs (never innerHTML with API-derived strings), so
+// nothing the API returns can inject markup into this page.
 (function () {
-  var API_URL = "https://api.github.com/repos/alabalint/PairLingo/contents/custom-word-lists";
-  var BROWSE_URL = "https://github.com/alabalint/PairLingo/tree/main/custom-word-lists";
+  var API_URL = "https://api.github.com/repos/alabalint/pairlingo-wordlists/contents/word-lists";
+  var BROWSE_URL = "https://github.com/alabalint/pairlingo-wordlists/tree/main/word-lists";
 
   var statusEl = document.getElementById("wordlist-status");
   var tableEl = document.getElementById("wordlist-table");
