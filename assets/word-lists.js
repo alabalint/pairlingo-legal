@@ -129,17 +129,35 @@
     return ordered[0][lang] + " ↔ " + ordered[1][lang];
   }
 
-  function makeGroupHeading(langs) {
-    var heading = document.createElement("h3");
-    heading.className = "wordlist-group-heading";
+  // A <details>/<summary> párost használja a nyitás/csukásra — ingyen ad
+  // billentyűzet- és képernyőolvasó-támogatást, JS-állapot nélkül; alapból
+  // csukva van (nincs `open` attribútum), a felhasználó koppintására nyílik.
+  function makeGroupSection(langs, files) {
+    var details = document.createElement("details");
+    details.className = "wordlist-group";
+
+    var summary = document.createElement("summary");
+    summary.className = "wordlist-group-heading";
+
+    var label = document.createElement("span");
+    label.className = "wordlist-group-label";
     if (langs) {
-      heading.appendChild(makeBilingualSpan("hu", groupHeadingText(langs, "hu")));
-      heading.appendChild(makeBilingualSpan("en", groupHeadingText(langs, "en")));
+      label.appendChild(makeBilingualSpan("hu", groupHeadingText(langs, "hu")));
+      label.appendChild(makeBilingualSpan("en", groupHeadingText(langs, "en")));
     } else {
-      heading.appendChild(makeBilingualSpan("hu", "Egyéb"));
-      heading.appendChild(makeBilingualSpan("en", "Other"));
+      label.appendChild(makeBilingualSpan("hu", "Egyéb"));
+      label.appendChild(makeBilingualSpan("en", "Other"));
     }
-    return heading;
+    summary.appendChild(label);
+
+    var chevron = document.createElement("span");
+    chevron.className = "wordlist-group-chevron";
+    chevron.setAttribute("aria-hidden", "true");
+    summary.appendChild(chevron);
+
+    details.appendChild(summary);
+    details.appendChild(makeTable(files));
+    return details;
   }
 
   function makeTable(files) {
@@ -176,13 +194,11 @@
     var grouped = groupFiles(files);
 
     grouped.groups.forEach(function (group) {
-      groupsEl.appendChild(makeGroupHeading(group.langs));
-      groupsEl.appendChild(makeTable(group.files));
+      groupsEl.appendChild(makeGroupSection(group.langs, group.files));
     });
 
     if (grouped.other.length > 0) {
-      groupsEl.appendChild(makeGroupHeading(null));
-      groupsEl.appendChild(makeTable(grouped.other));
+      groupsEl.appendChild(makeGroupSection(null, grouped.other));
     }
   }
 
