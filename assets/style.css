@@ -468,3 +468,21 @@ footer.site-footer a:hover { color: var(--text); }
   color: var(--text-muted);
   font-size: 0.92rem;
 }
+
+/* 1.7: platform-sor a hero-ban, iPad-képernyőképek külön rácsban */
+.platforms {
+  margin-top: -0.4rem;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+.showcase-title {
+  text-align: center;
+  margin: 3rem 0 1.4rem;
+  font-size: 1.2rem;
+}
+.showcase-ipad {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 560px) {
+  .showcase-ipad { grid-template-columns: 1fr; }
+}
