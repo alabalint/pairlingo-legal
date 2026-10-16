@@ -36,11 +36,11 @@
   <div class="page-header">
     <div data-lang="hu">
       <h1>PairLingo – Adatvédelmi szabályzat</h1>
-      <p class="subtitle">Hatályos: 2026. szeptember 29.</p>
+      <p class="subtitle">Hatályos: 2026. október 16.</p>
     </div>
     <div data-lang="en">
       <h1>PairLingo – Privacy Policy</h1>
-      <p class="subtitle">Effective: September 29, 2026</p>
+      <p class="subtitle">Effective: October 16, 2026</p>
     </div>
   </div>
 
@@ -53,14 +53,19 @@
         (analitika) vagy nyomkövető eszközöket, és nem gyűjt semmilyen adatot a fejlesztő számára.
         Minden szó, csoport és gyakorlási statisztika kizárólag a te készülékeden, illetve — ha
         bekapcsolod az iCloud-szinkronizációt — a te saját Apple-fiókod alá tartozó, privát
-        CloudKit-adattárban tárolódik.
+        iCloud-tárhelyen (CloudKit-adattárban és az iCloud kulcs-érték tárolójában) tárolódik.
       </p>
 
       <h2>Milyen adatokat tárol az alkalmazás?</h2>
       <ul>
         <li>Az általad felvitt, vagy CSV-fájlból, illetve lefényképezett szólistából importált
           szópárok, témakörök/csoportok.</li>
-        <li>Gyakorlási statisztika (helyes/hibás válaszok száma, napi gyakorlási sorozat).</li>
+        <li>Gyakorlási statisztika: az egyes szavaknál a helyes/hibás válaszok száma és az ismétlési
+          ütemezés, valamint a napi gyakorlási napló (melyik napon hány szót gyakoroltál), amiből a
+          napi gyakorlási sorozatod és a heti diagram készül. A napló eszközönként külön rekordban
+          tárolódik, egy az alkalmazás által véletlenszerűen generált eszköz-azonosító alatt — ez az
+          azonosító nem kapcsolódik a személyedhez, és sehova nem kerül el a saját iCloud-tárhelyeden
+          kívül.</li>
         <li>Beállítások (választott téma, alkalmazás nyelve, tanulási nyelvpár) — ezek a
           készüléken, a rendszer beállítás-tárolójában (UserDefaults) maradnak.</li>
       </ul>
@@ -75,12 +80,26 @@
         adathoz, mert az a te privát CloudKit-adatbázisodban van, nem egy, a fejlesztő által üzemeltetett
         szerveren.
       </p>
+      <p>
+        A napi gyakorlási napló és az abból számolt sorozat — mivel ezek néhány kilobájtnyi, nem
+        tanulási adatok — az iCloud kulcs-érték tárolóján (az Apple iCloud-szolgáltatása kisméretű
+        adatokhoz) keresztül szinkronizálódik, ugyanígy kizárólag a saját iCloud-fiókod alatt; ehhez
+        sincs a fejlesztőnek hozzáférése. Így a sorozatod és a heti diagramod az összes eszközöd
+        gyakorlását összegzi, és újratelepítés után is visszaáll.
+      </p>
+      <p>
+        Hogy egy másik eszközön történt változásról az app tudomást szerezzen, az Apple a saját
+        értesítési szolgáltatásán keresztül küld az alkalmazásnak csendes (a felhasználónak nem
+        megjelenő) értesítést. Ezek nem tartalmaznak szavakat vagy más tartalmat, és nem haladnak át
+        a fejlesztő szerverén (nincs ilyen szerver).
+      </p>
 
       <h2>Harmadik fél / külső szolgáltatás</h2>
       <p>
         Az alkalmazás nem használ hirdetési hálózatot, elemző (analitika) szolgáltatást, közösségimédia-
         integrációt vagy bármilyen más harmadik féltől származó SDK-t. Az egyetlen külső szolgáltatás,
-        amit az app igénybe vesz, az Apple saját CloudKit-je, a fent leírt módon.
+        amit az app igénybe vesz, az Apple saját iCloud-szolgáltatása (CloudKit és az iCloud
+        kulcs-érték tároló), a fent leírt módon.
       </p>
 
       <h2>Fénykép alapú import</h2>
@@ -94,8 +113,10 @@
 
       <h2>Adattörlés</h2>
       <p>
-        Az alkalmazáson belül bármikor törölhetsz egyes szavakat vagy egész csoportokat. Az app teljes
-        törlése a készülékedről törli a helyi adatokat is; az iCloudban tárolt másolat törléséhez az
+        Az alkalmazáson belül bármikor törölhetsz egyes szavakat vagy egész csoportokat; az iCloud-
+        szinkron révén a törlés a többi eszközödön is érvényesül. Az app teljes törlése a
+        készülékedről törli a helyi adatokat is; az iCloudban tárolt másolat (a szavak és a gyakorlási
+        napló is) megmarad, így újratelepítéskor visszaáll — a törléséhez az
         iOS Beállítások &gt; [neved] &gt; iCloud &gt; iCloud-tárhely kezelése menüben tudod eltávolítani
         az alkalmazáshoz tartozó adatokat.
       </p>
@@ -124,15 +145,19 @@
       <p>
         PairLingo has no backend server, contains no ads, uses no analytics or tracking tools, and does
         not collect any data on behalf of the developer. All words, groups, and practice statistics are
-        stored solely on your device and, if you enable iCloud sync, in your own private CloudKit
-        storage under your own Apple Account.
+        stored solely on your device and, if you enable iCloud sync, in your own private iCloud
+        storage (the CloudKit database and the iCloud key-value store) under your own Apple Account.
       </p>
 
       <h2>What data does the app store?</h2>
       <ul>
         <li>The word pairs and groups/topics you add manually, or import from a CSV file or a
           photographed word list.</li>
-        <li>Practice statistics (correct/incorrect answer counts, daily practice streak).</li>
+        <li>Practice statistics: for each word, the correct/incorrect answer counts and the review
+          schedule, plus a daily practice log (how many words you practised on which day), from which
+          your daily practice streak and the weekly chart are built. The log is stored in a separate
+          record per device, under a random device identifier generated by the app — this identifier
+          isn't linked to you as a person and never leaves your own iCloud storage.</li>
         <li>Preferences (selected theme, app language, learning language pair) — kept locally on
           your device in the system's settings store (UserDefaults).</li>
       </ul>
@@ -146,12 +171,24 @@
         developer (Bálint Alasztics) has no access to this data, since it lives in your private CloudKit
         database, not on a server operated by the developer.
       </p>
+      <p>
+        The daily practice log and the streak derived from it — a few kilobytes of non-learning data —
+        sync through the iCloud key-value store (Apple's iCloud service for small amounts of data),
+        likewise only under your own iCloud account; the developer has no access to this either. That
+        way your streak and weekly chart add up the practice on all your devices, and come back after a
+        reinstall.
+      </p>
+      <p>
+        So that the app learns about a change made on another device, Apple sends the app a silent
+        notification (one that isn't shown to you) through its own notification service. These carry no
+        words or other content, and they don't pass through any developer server (there is none).
+      </p>
 
       <h2>Third parties / external services</h2>
       <p>
         The app does not use any advertising network, analytics service, social-media integration, or
-        any other third-party SDK. The only external service the app relies on is Apple's own CloudKit,
-        as described above.
+        any other third-party SDK. The only external service the app relies on is Apple's own iCloud
+        service (CloudKit and the iCloud key-value store), as described above.
       </p>
 
       <h2>Photo-based import</h2>
@@ -165,8 +202,10 @@
 
       <h2>Data deletion</h2>
       <p>
-        You can delete individual words or entire groups within the app at any time. Deleting the app
-        from your device also removes the local data; to remove the iCloud copy, go to iOS Settings &gt;
+        You can delete individual words or entire groups within the app at any time; through iCloud sync,
+        a deletion also applies on your other devices. Deleting the app from your device also removes
+        the local data; the copy kept in iCloud (the words and the practice log) remains, so that it
+        comes back on a reinstall — to remove it, go to iOS Settings &gt;
         [your name] &gt; iCloud &gt; Manage Account Storage and remove the data belonging to the app.
       </p>
 
