@@ -74,8 +74,8 @@
       <p>
         Az adatok elsődlegesen a készüléked helyi tárolójában (SwiftData) vannak. Ha az eszközödön be
         van jelentkezve egy iCloud-fiók, az Apple CloudKit-keretrendszere automatikusan szinkronizálja
-        ezeket az adatokat a saját, privát iCloud-tárhelyedbe, hogy több eszközödön (pl. telefon és
-        tablet) is elérhetők legyenek. Ez a szinkronizáció kizárólag a te Apple-fiókod és a te
+        ezeket az adatokat a saját, privát iCloud-tárhelyedbe, hogy több eszközödön (pl. telefon,
+        tablet és óra) is elérhetők legyenek. Ez a szinkronizáció kizárólag a te Apple-fiókod és a te
         eszközeid között zajlik — a fejlesztőnek (Alasztics Bálintnak) nincs hozzáférése ehhez az
         adathoz, mert az a te privát CloudKit-adatbázisodban van, nem egy, a fejlesztő által üzemeltetett
         szerveren.
@@ -109,6 +109,22 @@
         sem a fejlesztőéhez, sem máshova. A feldolgozás után a fénykép maga nem is tárolódik az
         alkalmazásban: csak a belőle felismert szópárokat menti el, ahogy egy kézzel felvitt vagy
         CSV-ből importált szónál is.
+      </p>
+
+      <h2>Apple Watch, widgetek és emlékeztető</h2>
+      <p>
+        Az Apple Watch app és a widgetek (az iPhone és iPad kezdő- és zárolási képernyőjén, illetve az
+        óralapon) nem küldenek adatot sehova. Az óra-app ugyanazt a privát iCloud-adattárat használja,
+        mint a többi eszközöd — a szavaid és a haladásod a saját iCloud-fiókod alatt szinkronizálódik,
+        a fejlesztőnek nincs hozzáférése. A widgetek számára az app egy kis összesítést (hány szó
+        esedékes, mekkora a napi sorozatod) tárol az eszközön, az Apple által az app és a widget
+        között biztosított közös tárolóban (App Group); szavak nem kerülnek bele, és az összesítés nem
+        hagyja el az eszközt.
+      </p>
+      <p>
+        Az opcionális napi emlékeztető helyi értesítés: az eszközöd ütemezi, a szövege (például hogy
+        hány szó vár ismétlésre) az eszközön készül, szerver nem vesz részt benne. Az értesítési
+        engedélyt az app csak akkor kéri, amikor bekapcsolod az emlékeztetőt.
       </p>
 
       <h2>Adattörlés</h2>
@@ -166,7 +182,7 @@
       <p>
         Data primarily lives in your device's local storage (SwiftData). If you're signed in to iCloud
         on your device, Apple's CloudKit framework automatically syncs this data to your own private
-        iCloud storage so it's available across your devices (e.g. phone and tablet). This
+        iCloud storage so it's available across your devices (e.g. phone, tablet and watch). This
         synchronization happens exclusively between your Apple Account and your own devices — the
         developer (Bálint Alasztics) has no access to this data, since it lives in your private CloudKit
         database, not on a server operated by the developer.
@@ -198,6 +214,22 @@
         developer's. The photo itself isn't stored by the app after processing either: only the word
         pairs recognized from it are saved, the same as a word added by hand or imported from a CSV
         file.
+      </p>
+
+      <h2>Apple Watch, widgets and the reminder</h2>
+      <p>
+        The Apple Watch app and the widgets (on the iPhone and iPad Home Screen and Lock Screen, and on
+        the watch face) don't send data anywhere. The watch app uses the same private iCloud storage as
+        your other devices — your words and progress sync under your own iCloud account, and the
+        developer has no access to them. For the widgets, the app keeps a small summary on the device
+        (how many words are due and how long your daily streak is) in the shared storage Apple provides
+        between an app and its widget (an App Group); it contains no words and never leaves the
+        device.
+      </p>
+      <p>
+        The optional daily reminder is a local notification: your device schedules it, its text (for
+        example how many words are waiting for review) is built on the device, and no server is
+        involved. The app asks for notification permission only when you turn the reminder on.
       </p>
 
       <h2>Data deletion</h2>

@@ -5,13 +5,13 @@ Másold be a megfelelő mezőkbe App Store Connectben.
 
 ## Alapadatok
 
-*A szövegek forrása a [PairLingo repó `docs/`](https://github.com/alabalint/PairLingo/tree/main/docs) mappája (`APP_STORE_DESCRIPTION.md`, `APP_STORE_METADATA.md`) — ez a fájl az 1.7-es (2026. október) állapotot tükrözi.*
+*A szövegek forrása a [PairLingo repó `docs/`](https://github.com/alabalint/PairLingo/tree/main/docs) mappája (`APP_STORE_DESCRIPTION.md`, `APP_STORE_METADATA.md`) — ez a fájl az 1.8-as (2026. november) állapotot tükrözi — a szövegek az 1.8 kiadásával lépnek életbe.*
 
 - **Név (Name, max 30 karakter):** `PairLingo: Language Learning`
 - **Alcím (Subtitle, max 30 karakter):** `Match, Type & Flashcards`
 - **Kategória:** Education (Oktatás) — másodlagos: Games / Word
 - **Ár:** Ingyenes
-- **Platformok:** iPhone és iPad (iOS/iPadOS 17+) — univerzális app; a natív Mac-verzió (macOS 14+) ugyanennek az app-rekordnak a macOS platformja
+- **Platformok:** iPhone és iPad (iOS/iPadOS 17+) és Apple Watch (watchOS 10+; az iPhone-app része, külön vásárlás nélkül) — univerzális app; a natív Mac-verzió (macOS 14+) ugyanennek az app-rekordnak a macOS platformja
 
 ## Leírás (magyar)
 
@@ -41,14 +41,20 @@ Nem egy fix „hibás szavak" kuka — a PairLingo minden szóhoz saját ismétl
 IGAZÁN TÖBBNYELVŰ FELÜLET
 Nemcsak a tananyag: maga az alkalmazás is 6 nyelven érhető el (magyar, angol, német, spanyol, francia, olasz), azonnal váltható, újraindítás nélkül.
 
-IPHONE, IPAD ÉS MAC
-Egy app minden Apple-eszközödre. Az iPaden a témakörök és az ismétlés-sorok a széles kijelzőt kitöltő rácsba rendeződnek; a Macen natív app ablak-eszköztárral, teljes menüsorral, billentyűparancsokkal és Beállítások ablakkal. A szavaid és a haladásod a saját iCloud-fiókodon át szinkronban marad mindegyik között.
+MAI ADAG, AZ ÓRÁDON IS
+Egy koppintás elindítja a nap gyakorlását: az ismétlendő szavak és néhány új szó egy körben — te állítod be, naponta hány újat tanulj. Az Apple Watch app az órádon tanít és ismételtet, a kezdő- és zárolási képernyő meg az óralap widgetjei pedig megmutatják, mi vár rád, és a napi sorozatodat.
+
+IPHONE, IPAD, MAC ÉS APPLE WATCH
+Egy app minden Apple-eszközödre. Az iPaden a témakörök és az ismétlés-sorok a széles kijelzőt kitöltő rácsba rendeződnek; a natív Mac app ablak-eszköztárral, teljes menüsorral, billentyűparancsokkal és Beállítások ablakkal; az Apple Watch app jár mellé, iPhone nélkül is működik. A szavaid és a haladásod a saját iCloud-fiókodon át szinkronban marad.
 
 TOVÁBBI FUNKCIÓK
 • Egy cuki kis pók kabala, aki ünnepel a hibátlan köreidnél, és bátorít egy tévesztés után
 • Opcionális példamondat bármelyik szóhoz, ami a megoldás megnézése után jelenik meg — kézzel írhatod, vagy CSV-ből is importálhatod
 • Kézi szóhozzáadás, csoportkezelés (szerkesztés, törlés, átnevezés, összevonás)
-• Opcionális napi emlékeztető az általad választott időpontban — helyi értesítés, szerver nélkül
+• Elírás-tűrő gépelés: egy betűnyi elírást és minden felvett fordítást elfogad
+• A kör végi összegzés felsorolja az elhibázott szavakat, „Még egy kör” gombbal
+• Keresés az összes szó között, CSV-export biztonsági mentésnek
+• Opcionális napi emlékeztető — megmondja, hány szó vár, és nem szól, ha már gyakoroltál; helyi értesítés, szerver nélkül
 • Kör-méret (4–10 szó) és kérdezés-irány választható
 • Statisztika: napi gyakorlási sorozat, heti diagram, csoportonkénti pontosság
 • 6 letisztult, matt színtéma
@@ -100,17 +106,27 @@ A GENUINELY MULTILINGUAL INTERFACE
 Not just the content — the app's own interface is available in 6 languages (English,
 Hungarian, German, Spanish, French, Italian), switchable instantly with no relaunch.
 
-IPHONE, IPAD AND MAC
-One app for all your Apple devices. On iPad, the topics and review rows flow into a grid that
-fills the wide screen; on the Mac, a native app brings a window toolbar, a full menu bar with
-keyboard shortcuts and a Settings window. Your words and progress stay in sync between all of
-them through your own iCloud account.
+TODAY'S SESSION, ON YOUR WRIST TOO
+One tap starts the day's work: the words that are due plus a few new ones, in one round —
+you set how many new words to learn per day. The Apple Watch app learns and reviews with you
+on your wrist, and widgets for the Home Screen, Lock Screen and watch face show what's
+waiting and your daily streak.
+
+IPHONE, IPAD, MAC AND APPLE WATCH
+One app for all your Apple devices. On iPad, topics and review rows flow into a grid that
+fills the wide screen; the native Mac app brings a window toolbar, a full menu bar with
+keyboard shortcuts and a Settings window; the Apple Watch app is included and works without
+the iPhone. Your words and progress stay in sync between all of them through your own iCloud
+account.
 
 MORE FEATURES
 • A friendly little spider mascot who celebrates your flawless rounds and cheers you on after a slip
 • Optional example sentences on any word, shown once you've seen the answer — write your own, or import them via CSV
 • Manual word entry, group management (edit, delete, rename, merge)
-• Optional daily reminder, at a time you choose — a local notification, no server involved
+• Forgiving typing: one-letter typos and any saved translation are accepted
+• The round summary lists missed words, with "One more round" to keep going
+• Search across all your words, and export them to CSV as a backup
+• Optional daily reminder at a time you choose — says how many words wait, quiet once you've practised. Local, no server involved
 • Choose your round size (4–10 words) and which direction to be asked in
 • Stats: daily practice streak, a seven-day practice chart, per-group accuracy
 • 6 clean, matte color themes

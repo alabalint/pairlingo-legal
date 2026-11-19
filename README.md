@@ -1,6 +1,6 @@
 # PairLingo — weboldal & App Store dokumentumok
 
-Ez a nyilvános repó a [PairLingo](https://github.com/alabalint/PairLingo) iOS/iPadOS alkalmazás
+Ez a nyilvános repó a [PairLingo](https://github.com/alabalint/PairLingo) iOS/iPadOS/watchOS alkalmazás
 marketing weboldalát, valamint az App Store-beadásához szükséges publikus dokumentumokat
 tartalmazza:
 
