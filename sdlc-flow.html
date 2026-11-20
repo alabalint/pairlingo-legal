@@ -44,7 +44,8 @@ figcaption { margin-top: 12px; font-size: 15px; line-height: 1.5; color: var(--s
 /* Phone layout */
 .phone .frame { border-radius: 12px; }
 svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; }
-.phone { padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
+.phone { padding-bottom: 170px; }
+.phone figcaption { margin-top: 14px; padding-bottom: 6px; }
 .mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: rgba(8,21,16,0.96); border-top: 1px solid var(--line); padding-top: 10px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .mbar-in { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
 .mbar-row { display: flex; align-items: center; gap: 10px; }
@@ -70,7 +71,7 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
 .flow-m .t-title { font-size: 21px; }
 .flow-m .t-leg { font-size: 13px; }
 .flow-m .t-name { font-size: 16px; }
-.flow-m .t-sub, .flow-m .t-file { font-size: 12.5px; }
+.flow-m .t-sub, .flow-m .t-file { font-size: 13px; }
 .flow-m .t-gate { font-size: 14px; }
 
 .trace { fill: none; stroke: var(--line); stroke-width: 2.5; }
@@ -265,106 +266,106 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
 <div class="wrap phone" id="mob" hidden>
 <figure>
 <div class="frame">
-<svg class="flow-m" viewBox="0 0 420 990" role="img" aria-label="Animated diagram of the PairLingo SDLC, drawn top to bottom: one backlog item moves through the BA, gate G1, the Architect, gate G2, three parallel developers, integration, QA with a defect sent back, gate G3, four documentation tracks, gate G4 and a pull request, then merges into main. You approve every gate from the console at the top left, and each agent leaves a file.">
-<rect width="420" height="990" fill="url(#pcb)"/>
-<text class="t-eyebrow" x="16" y="28">PAIRLINGO // SDLC</text>
+<svg class="flow-m" viewBox="0 0 420 1230" role="img" aria-label="Animated diagram of the PairLingo SDLC, drawn top to bottom: one backlog item moves through the BA, gate G1, the Architect, gate G2, three parallel developers, integration, QA with a defect sent back, gate G3, four documentation tracks, gate G4 and a pull request, then merges into main. You approve every gate from the console at the top left, and each agent leaves a file.">
+<rect width="420" height="1230" fill="url(#pcb)"/>
+<text class="t-eyebrow" x="16" y="26">PAIRLINGO // SDLC</text>
 <text class="t-title" x="16" y="54">One task, end to end</text>
-<g transform="translate(262 24)">
+<g transform="translate(262 22)">
 <circle cx="0" cy="-4" r="5" fill="#CDB2FF"/><text class="t-leg" x="10" y="0">Opus</text>
 <circle cx="70" cy="-4" r="5" fill="#4FE39E"/><text class="t-leg" x="80" y="0">Sonnet</text>
 <circle cx="0" cy="18" r="5" fill="#86D8FF"/><text class="t-leg" x="10" y="22">Haiku</text>
 <polygon points="70,10 77,17 70,24 63,17" fill="#1D1509" stroke="#FFB547" stroke-width="2"/><text class="t-leg" x="80" y="22">gate</text>
 </g>
 <g id="m-you" class="you">
-<rect x="10" y="68" width="170" height="46" rx="10"/>
-<circle class="lamp" cx="28" cy="91" r="6"/>
-<text class="t-name" x="102" y="88" style="fill:#FFB547;font-size:15px">YOU</text>
-<text class="t-sub" x="102" y="105">approve · change · reject</text>
+<rect x="12" y="74" width="184" height="44" rx="10"/>
+<circle class="lamp" cx="30" cy="96" r="6"/>
+<text class="t-name" x="116" y="92" style="fill:#FFB547;font-size:15px">YOU</text>
+<text class="t-sub" x="116" y="110" style="font-size:13px">approve at gates</text>
 </g>
-<path class="bus-base" d="M16 114 L16 830 M16 275 L186 275 M16 395 L186 395 M16 700 L186 700 M16 830 L186 830"/>
-<path class="bus-hot" id="m-bus0" d="M16 114 L16 275 L186 275"/>
-<path class="bus-hot" id="m-bus1" d="M16 114 L16 395 L186 395"/>
-<path class="bus-hot" id="m-bus2" d="M16 114 L16 700 L186 700"/>
-<path class="bus-hot" id="m-bus3" d="M16 114 L16 830 L186 830"/>
-<path class="main-line" d="M410 92 L410 975"/>
-<text class="t-name" x="404" y="86" style="text-anchor:end;font-size:13px">main</text>
-<circle cx="410" cy="112" r="5" fill="#A3CDB6"/><circle cx="410" cy="140" r="5" fill="#A3CDB6"/>
-<path class="branch" id="m-branchline" d="M410 172 C340 172 300 150 260 150"/>
-<path class="trace" d="M210 172 L210 420"/>
-<path class="trace" d="M210 420 C210 440 95 440 95 465"/>
-<path class="trace" d="M210 420 L210 465"/>
-<path class="trace" d="M210 420 C210 440 325 440 325 465"/>
-<path class="trace" d="M95 491 C95 512 210 505 210 520"/>
-<path class="trace" d="M210 491 L210 520"/>
-<path class="trace" d="M325 491 C325 512 210 505 210 520"/>
-<path class="trace" d="M210 520 L210 728"/>
-<path class="trace" d="M210 728 C210 745 75 745 75 765 C75 785 210 785 210 800"/>
-<path class="trace" d="M210 728 C210 745 165 745 165 765 C165 785 210 785 210 800"/>
-<path class="trace" d="M210 728 C210 745 255 745 255 765 C255 785 210 785 210 800"/>
-<path class="trace" d="M210 728 C210 745 345 745 345 765 C345 785 210 785 210 800"/>
-<path class="trace" d="M210 800 L210 895 L275 895 C360 895 410 905 410 950"/>
-<path class="trace" d="M160 630 L140 630"/>
-<path class="defect-arc" d="M260 630 C330 630 325 560 325 491"/>
-<text class="t-note" x="340" y="600" style="fill:#FF7FA0;font-size:11.5px">defect</text>
-<circle id="m-mergedot" class="mergedot" cx="410" cy="950" r="7"/>
-<circle id="m-mergering" cx="410" cy="950" r="7" fill="none" stroke="#4FE39E" stroke-width="2" opacity="0"/>
-<g class="file" id="m-f0"><rect x="40" y="139" width="110" height="24" rx="5"/><text class="t-file" x="95" y="156">STATUS.md</text></g>
-<g class="file" id="m-f1"><rect x="282" y="203" width="112" height="24" rx="5"/><text class="t-file" x="338" y="220">01-spec.md</text></g>
-<g class="file" id="m-f2"><rect x="282" y="323" width="112" height="24" rx="5"/><text class="t-file" x="338" y="340">02-design.md</text></g>
-<g class="file" id="m-f3"><rect x="34" y="543" width="118" height="24" rx="5"/><text class="t-file" x="93" y="560">03-dev-notes</text></g>
-<g class="file" id="m-f4"><rect x="282" y="688" width="112" height="24" rx="5"/><text class="t-file" x="338" y="705">04-qa-report</text></g>
-<g class="file" id="m-f5"><rect x="282" y="818" width="112" height="24" rx="5"/><text class="t-file" x="338" y="835">05-docs.md</text></g>
-<g class="file" id="m-f6"><rect x="40" y="883" width="100" height="24" rx="5"/><text class="t-file" x="90" y="900">pr.md</text></g>
+<path class="bus-base" d="M12 118 L12 1050 M12 340 L184 340 M12 504 L184 504 M12 878 L184 878 M12 1050 L184 1050"/>
+<path class="bus-hot" id="m-bus0" d="M12 118 L12 340 L184 340"/>
+<path class="bus-hot" id="m-bus1" d="M12 118 L12 504 L184 504"/>
+<path class="bus-hot" id="m-bus2" d="M12 118 L12 878 L184 878"/>
+<path class="bus-hot" id="m-bus3" d="M12 118 L12 1050 L184 1050"/>
+<path class="main-line" d="M414 96 L414 1215"/>
+<text class="t-name" x="406" y="90" style="text-anchor:end;font-size:13px">main</text>
+<circle cx="414" cy="120" r="5" fill="#A3CDB6"/><circle cx="414" cy="150" r="5" fill="#A3CDB6"/>
+<path class="branch" id="m-branchline" d="M414 214 C360 214 300 170 260 170"/>
+<path class="trace" d="M210 192 L210 548"/>
+<path class="trace" d="M210 548 C210 572 80 568 80 600"/>
+<path class="trace" d="M210 548 L210 600"/>
+<path class="trace" d="M210 548 C210 572 340 568 340 600"/>
+<path class="trace" d="M80 600 C80 640 210 632 210 660"/>
+<path class="trace" d="M210 600 L210 660"/>
+<path class="trace" d="M340 600 C340 640 210 632 210 660"/>
+<path class="trace" d="M210 660 L210 916"/>
+<path class="trace" d="M210 916 C210 938 60 936 60 960 C60 984 210 982 210 1004"/>
+<path class="trace" d="M210 916 C210 938 160 936 160 960 C160 984 210 982 210 1004"/>
+<path class="trace" d="M210 916 C210 938 260 936 260 960 C260 984 210 982 210 1004"/>
+<path class="trace" d="M210 916 C210 938 360 936 360 960 C360 984 210 982 210 1004"/>
+<path class="trace" d="M210 1004 L210 1136 L285 1136 C370 1136 414 1150 414 1200"/>
+<path class="trace" d="M160 796 L130 796"/>
+<path class="defect-arc" d="M260 796 C340 796 340 700 340 629"/>
+<text class="t-note" x="372" y="716" text-anchor="middle" style="fill:#FF7FA0;font-size:13px">defect</text>
+<circle id="m-mergedot" class="mergedot" cx="414" cy="1200" r="7"/>
+<circle id="m-mergering" cx="414" cy="1200" r="7" fill="none" stroke="#4FE39E" stroke-width="2" opacity="0"/>
+<g class="file" id="m-f0"><rect x="24" y="158" width="100" height="24" rx="5"/><text class="t-file" x="74" y="175">STATUS.md</text></g>
+<g class="file" id="m-f1"><rect x="298" y="246" width="106" height="24" rx="5"/><text class="t-file" x="351" y="263">01-spec.md</text></g>
+<g class="file" id="m-f2"><rect x="298" y="410" width="106" height="24" rx="5"/><text class="t-file" x="351" y="427">02-design.md</text></g>
+<g class="file" id="m-f3"><rect x="24" y="696" width="106" height="24" rx="5"/><text class="t-file" x="77" y="713">03-dev-notes</text></g>
+<g class="file" id="m-f4"><rect x="298" y="866" width="106" height="24" rx="5"/><text class="t-file" x="351" y="883">04-qa-report</text></g>
+<g class="file" id="m-f5"><rect x="298" y="1038" width="106" height="24" rx="5"/><text class="t-file" x="351" y="1055">05-docs.md</text></g>
+<g class="file" id="m-f6"><rect x="24" y="1124" width="100" height="24" rx="5"/><text class="t-file" x="74" y="1141">pr.md</text></g>
 <g id="m-tokens"></g>
 <g>
-<rect x="164" y="122" width="100" height="44" rx="7" fill="#0A1912" stroke="#1D3D2D" stroke-width="1.5"/>
+<rect x="164" y="142" width="100" height="44" rx="7" fill="#0A1912" stroke="#1D3D2D" stroke-width="1.5"/>
 <g id="m-card5" class="backlog-card">
-<rect x="160" y="128" width="100" height="44" rx="7" fill="#0C1C15" stroke="#4FE39E" stroke-width="2"/>
-<text class="t-name" x="210" y="149" style="font-size:14px">PL-005</text>
-<text class="t-sub" x="210" y="165" style="font-size:11px">backlog</text>
+<rect x="160" y="148" width="100" height="44" rx="7" fill="#0C1C15" stroke="#4FE39E" stroke-width="2"/>
+<text class="t-name" x="210" y="169" style="font-size:14px">PL-005</text>
+<text class="t-sub" x="210" y="185" style="font-size:12px">backlog</text>
 </g>
 </g>
-<g class="node m-sonnet" id="m-n-ba"><rect x="150" y="192" width="120" height="46" rx="9"/><text class="t-name" x="210" y="212">BA</text><text class="t-sub" x="210" y="229">spec</text></g>
-<g class="gate" id="m-g0"><polygon points="210,251 234,275 210,299 186,275"/><text class="t-gate" x="210" y="280">G1</text><text class="t-ok" x="252" y="282">✓</text></g>
-<g class="node m-opus" id="m-n-arch"><rect x="145" y="312" width="130" height="46" rx="9"/><text class="t-name" x="210" y="332">Architect</text><text class="t-sub" x="210" y="349">design + tasks</text></g>
-<g class="gate" id="m-g1"><polygon points="210,371 234,395 210,419 186,395"/><text class="t-gate" x="210" y="400">G2</text><text class="t-ok" x="252" y="402">✓</text></g>
-<g class="node m-sonnet" id="m-n-d1"><rect x="45" y="439" width="100" height="52" rx="9"/><text class="t-name" x="95" y="460" style="font-size:14px">T1 · dev</text><rect class="pbar-bg" x="57" y="474" width="76" height="5" rx="2.5"/><rect class="pbar" id="m-pb1" data-w="76" x="57" y="474" width="0" height="5" rx="2.5"/></g>
-<g class="node m-sonnet" id="m-n-d2"><rect x="160" y="439" width="100" height="52" rx="9"/><text class="t-name" x="210" y="460" style="font-size:14px">T2 · dev</text><rect class="pbar-bg" x="172" y="474" width="76" height="5" rx="2.5"/><rect class="pbar" id="m-pb2" data-w="76" x="172" y="474" width="0" height="5" rx="2.5"/></g>
-<g class="node m-opus" id="m-n-d3"><rect x="275" y="439" width="100" height="52" rx="9"/><text class="t-name" x="325" y="460" style="font-size:14px">T3 · senior</text><rect class="pbar-bg" x="287" y="474" width="76" height="5" rx="2.5"/><rect class="pbar pbar-opus" id="m-pb3" data-w="76" x="287" y="474" width="0" height="5" rx="2.5"/></g>
-<g class="node m-sonnet" id="m-n-int"><rect x="145" y="531" width="130" height="48" rx="9"/><text class="t-name" x="210" y="551" style="font-size:15px">Integration</text><text class="check" id="m-c-t0" x="186" y="570">T0 ✓</text><text class="check" id="m-c-t1" x="234" y="570">T1 ✓</text></g>
-<g class="node m-haiku" id="m-n-run"><rect x="40" y="607" width="100" height="46" rx="9"/><text class="t-name" x="90" y="627" style="font-size:14px">QA runner</text><text class="t-sub" x="90" y="644">runs tests</text></g>
-<g class="node m-sonnet" id="m-n-qa"><rect x="160" y="607" width="100" height="46" rx="9"/><text class="t-name" x="210" y="627">QA</text><text class="t-sub" x="210" y="644">tests</text></g>
-<g class="gate" id="m-g2"><polygon points="210,676 234,700 210,724 186,700"/><text class="t-gate" x="210" y="705">G3</text><text class="t-ok" x="252" y="707">✓</text></g>
-<g class="node m-sonnet" id="m-n-doc0"><rect x="36" y="748" width="78" height="34" rx="7"/><text class="t-name" x="75" y="770" style="font-size:12.5px">user</text></g>
-<g class="node m-sonnet" id="m-n-doc1"><rect x="126" y="748" width="78" height="34" rx="7"/><text class="t-name" x="165" y="770" style="font-size:12.5px">arch</text></g>
-<g class="node m-sonnet" id="m-n-doc2"><rect x="216" y="748" width="78" height="34" rx="7"/><text class="t-name" x="255" y="770" style="font-size:12.5px">release</text></g>
-<g class="node m-haiku" id="m-n-doc3"><rect x="306" y="748" width="78" height="34" rx="7"/><text class="t-name" x="345" y="770" style="font-size:12.5px">limits</text></g>
-<g class="gate" id="m-g3"><polygon points="210,806 234,830 210,854 186,830"/><text class="t-gate" x="210" y="835">G4</text><text class="t-ok" x="252" y="837">✓</text></g>
-<g class="node m-plain" id="m-n-pr"><rect x="150" y="872" width="120" height="46" rx="9"/><text class="t-name" x="210" y="892" style="font-size:15px">Pull request</text><text class="t-sub" x="210" y="909">push + PR</text></g>
+<g class="node m-sonnet" id="m-n-ba"><rect x="135" y="232" width="150" height="52" rx="9"/><text class="t-name" x="210" y="255" style="font-size:15px">BA</text><text class="t-sub" x="210" y="274" style="font-size:13px">writes the spec</text></g>
+<g class="gate" id="m-g0"><polygon points="210,314 236,340 210,366 184,340"/><text class="t-gate" x="210" y="345">G1</text><text class="t-ok" x="254" y="347">✓</text></g>
+<g class="node m-opus" id="m-n-arch"><rect x="135" y="396" width="150" height="52" rx="9"/><text class="t-name" x="210" y="419" style="font-size:15px">Architect</text><text class="t-sub" x="210" y="438" style="font-size:13px">design + tasks</text></g>
+<g class="gate" id="m-g1"><polygon points="210,478 236,504 210,530 184,504"/><text class="t-gate" x="210" y="509">G2</text><text class="t-ok" x="254" y="511">✓</text></g>
+<g class="node m-sonnet" id="m-n-d1"><rect x="24" y="571" width="112" height="58" rx="9"/><text class="t-name" x="80" y="595" style="font-size:14px">T1 dev</text><rect class="pbar-bg" x="36" y="610" width="88" height="5" rx="2.5"/><rect class="pbar" id="m-pb1" data-w="88" x="36" y="610" width="0" height="5" rx="2.5"/></g>
+<g class="node m-sonnet" id="m-n-d2"><rect x="154" y="571" width="112" height="58" rx="9"/><text class="t-name" x="210" y="595" style="font-size:14px">T2 dev</text><rect class="pbar-bg" x="166" y="610" width="88" height="5" rx="2.5"/><rect class="pbar" id="m-pb2" data-w="88" x="166" y="610" width="0" height="5" rx="2.5"/></g>
+<g class="node m-opus" id="m-n-d3"><rect x="284" y="571" width="112" height="58" rx="9"/><text class="t-name" x="340" y="595" style="font-size:14px">T3 senior</text><rect class="pbar-bg" x="296" y="610" width="88" height="5" rx="2.5"/><rect class="pbar pbar-opus" id="m-pb3" data-w="88" x="296" y="610" width="0" height="5" rx="2.5"/></g>
+<g class="node m-sonnet" id="m-n-int"><rect x="135" y="682" width="150" height="52" rx="9"/><text class="t-name" x="210" y="703" style="font-size:15px">Integration</text><text class="check" id="m-c-t0" x="182" y="724">T0 ✓</text><text class="check" id="m-c-t1" x="238" y="724">T1 ✓</text></g>
+<g class="node m-haiku" id="m-n-run"><rect x="24" y="770" width="106" height="52" rx="9"/><text class="t-name" x="77" y="792" style="font-size:14px">QA runner</text><text class="t-sub" x="77" y="810" style="font-size:13px">runs tests</text></g>
+<g class="node m-sonnet" id="m-n-qa"><rect x="160" y="770" width="100" height="52" rx="9"/><text class="t-name" x="210" y="792" style="font-size:15px">QA</text><text class="t-sub" x="210" y="810" style="font-size:13px">tests</text></g>
+<g class="gate" id="m-g2"><polygon points="210,852 236,878 210,904 184,878"/><text class="t-gate" x="210" y="883">G3</text><text class="t-ok" x="254" y="885">✓</text></g>
+<g class="node m-sonnet" id="m-n-doc0"><rect x="17" y="941" width="86" height="38" rx="7"/><text class="t-name" x="60" y="965" style="font-size:13px">user</text></g>
+<g class="node m-sonnet" id="m-n-doc1"><rect x="117" y="941" width="86" height="38" rx="7"/><text class="t-name" x="160" y="965" style="font-size:13px">arch</text></g>
+<g class="node m-sonnet" id="m-n-doc2"><rect x="217" y="941" width="86" height="38" rx="7"/><text class="t-name" x="260" y="965" style="font-size:13px">release</text></g>
+<g class="node m-haiku" id="m-n-doc3"><rect x="317" y="941" width="86" height="38" rx="7"/><text class="t-name" x="360" y="965" style="font-size:13px">limits</text></g>
+<g class="gate" id="m-g3"><polygon points="210,1024 236,1050 210,1076 184,1050"/><text class="t-gate" x="210" y="1055">G4</text><text class="t-ok" x="254" y="1057">✓</text></g>
+<g class="node m-plain" id="m-n-pr"><rect x="135" y="1110" width="150" height="52" rx="9"/><text class="t-name" x="210" y="1132" style="font-size:15px">Pull request</text><text class="t-sub" x="210" y="1151" style="font-size:13px">push + PR</text></g>
 <g fill="none" stroke="none">
-<path id="m-p-a" d="M210 150 L210 215"/>
-<path id="m-p-b" d="M210 215 L210 275"/>
-<path id="m-p-c" d="M210 275 L210 335"/>
-<path id="m-p-d" d="M210 335 L210 395"/>
-<path id="m-p-e1" d="M210 395 L210 420 C210 440 95 440 95 465"/>
-<path id="m-p-e2" d="M210 395 L210 465"/>
-<path id="m-p-e3" d="M210 395 L210 420 C210 440 325 440 325 465"/>
-<path id="m-p-f1" d="M95 465 L95 491 C95 512 210 505 210 520 L210 555"/>
-<path id="m-p-f2" d="M210 465 L210 555"/>
-<path id="m-p-f3" d="M325 465 L325 491 C325 512 210 505 210 520 L210 555"/>
-<path id="m-p-g" d="M210 555 L210 630"/>
-<path id="m-p-defect" d="M210 630 L260 630 C330 630 325 560 325 491 L325 465"/>
-<path id="m-p-h" d="M210 630 L210 700"/>
-<path id="m-p-i0" d="M210 700 L210 728 C210 745 75 745 75 765"/>
-<path id="m-p-i1" d="M210 700 L210 728 C210 745 165 745 165 765"/>
-<path id="m-p-i2" d="M210 700 L210 728 C210 745 255 745 255 765"/>
-<path id="m-p-i3" d="M210 700 L210 728 C210 745 345 745 345 765"/>
-<path id="m-p-o0" d="M75 765 C75 785 210 785 210 800 L210 830"/>
-<path id="m-p-o1" d="M165 765 C165 785 210 785 210 800 L210 830"/>
-<path id="m-p-o2" d="M255 765 C255 785 210 785 210 800 L210 830"/>
-<path id="m-p-o3" d="M345 765 C345 785 210 785 210 800 L210 830"/>
-<path id="m-p-j" d="M210 830 L210 895"/>
-<path id="m-p-k" d="M210 895 L275 895 C360 895 410 905 410 950"/>
+<path id="m-p-a" d="M210 170 L210 258"/>
+<path id="m-p-b" d="M210 258 L210 340"/>
+<path id="m-p-c" d="M210 340 L210 422"/>
+<path id="m-p-d" d="M210 422 L210 504"/>
+<path id="m-p-e1" d="M210 504 L210 548 C210 572 80 568 80 600"/>
+<path id="m-p-e2" d="M210 504 L210 600"/>
+<path id="m-p-e3" d="M210 504 L210 548 C210 572 340 568 340 600"/>
+<path id="m-p-f1" d="M80 600 C80 640 210 632 210 660 L210 708"/>
+<path id="m-p-f2" d="M210 600 L210 708"/>
+<path id="m-p-f3" d="M340 600 C340 640 210 632 210 660 L210 708"/>
+<path id="m-p-g" d="M210 708 L210 796"/>
+<path id="m-p-defect" d="M210 796 L260 796 C340 796 340 700 340 629 L340 600"/>
+<path id="m-p-h" d="M210 796 L210 878"/>
+<path id="m-p-i0" d="M210 878 L210 916 C210 938 60 936 60 960"/>
+<path id="m-p-i1" d="M210 878 L210 916 C210 938 160 936 160 960"/>
+<path id="m-p-i2" d="M210 878 L210 916 C210 938 260 936 260 960"/>
+<path id="m-p-i3" d="M210 878 L210 916 C210 938 360 936 360 960"/>
+<path id="m-p-o0" d="M60 960 C60 984 210 982 210 1004 L210 1050"/>
+<path id="m-p-o1" d="M160 960 C160 984 210 982 210 1004 L210 1050"/>
+<path id="m-p-o2" d="M260 960 C260 984 210 982 210 1004 L210 1050"/>
+<path id="m-p-o3" d="M360 960 C360 984 210 982 210 1004 L210 1050"/>
+<path id="m-p-j" d="M210 1050 L210 1136"/>
+<path id="m-p-k" d="M210 1136 L285 1136 C370 1136 414 1150 414 1200"/>
 </g>
 </svg>
 </div>
@@ -383,6 +384,7 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
   var NS = 'http://www.w3.org/2000/svg';
   var TOTAL = 14;
   var P = 'd-';
+  var SPEED = 1; // phone: a little slower, so the eye can follow
   function $(id) { return document.getElementById(P + id); }
 
   // Virtual clock, so Pause really freezes everything mid-move.
@@ -406,8 +408,8 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
     requestAnimationFrame(frame);
   }
   function ease(p) { return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
-  function wait(ms) { return new Promise(function (r) { waiters.push({ at: clock + ms, resolve: r }); }); }
-  function tween(ms, fn, noEase) { return new Promise(function (r) { tweens.push({ start: clock, dur: ms, fn: fn, resolve: r, ease: !noEase }); }); }
+  function wait(ms) { ms *= SPEED; return new Promise(function (r) { waiters.push({ at: clock + ms, resolve: r }); }); }
+  function tween(ms, fn, noEase) { ms *= SPEED; return new Promise(function (r) { tweens.push({ start: clock, dur: ms, fn: fn, resolve: r, ease: !noEase }); }); }
 
   function bbox(id) { return $(id).getBBox(); }
   function center(id) { var b = bbox(id); return { x: b.x + b.width / 2, y: b.y + b.height / 2 }; }
@@ -418,10 +420,10 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
     var c = document.createElementNS(NS, 'circle');
     c.setAttribute('r', P === 'm-' ? '7' : '9'); c.setAttribute('fill', color || '#4FE39E'); c.setAttribute('filter', 'url(#glow)');
     g.appendChild(c);
-    if (label) {
+    // Labels sit beside the dot on the wide layout only; on the phone the narration bar says what moves.
+    if (label && P === 'd-') {
       var t = document.createElementNS(NS, 'text');
-      t.setAttribute('class', 't-tok'); t.setAttribute('y', P === 'm-' ? '-12' : '-16'); t.textContent = label;
-      if (P === 'm-') { t.setAttribute('x', '26'); t.setAttribute('y', '4'); t.style.textAnchor = 'start'; t.style.fontSize = '11px'; }
+      t.setAttribute('class', 't-tok'); t.setAttribute('y', '-16'); t.textContent = label;
       g.appendChild(t);
     }
     $('tokens').appendChild(g);
@@ -471,8 +473,9 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
     var barH = document.querySelector('.mbar').offsetHeight;
     var viewH = window.innerHeight - barH;
     var y = r.top + r.height / 2;
-    if (y < viewH * 0.25 || y > viewH * 0.7) {
-      window.scrollTo({ top: Math.max(0, window.scrollY + y - viewH * 0.45), behavior: 'smooth' });
+    // Keep the moving task in the upper-middle of the visible area; scroll only when it drifts out.
+    if (y < viewH * 0.18 || y > viewH * 0.62) {
+      window.scrollTo({ top: Math.max(0, window.scrollY + y - viewH * 0.36), behavior: 'smooth' });
     }
   }
 
@@ -610,6 +613,12 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
   }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pauseBtns = document.querySelectorAll('.js-pause');
+  // Leave room under the drawing for the fixed narration bar, whatever its height on this phone.
+  function fitBottom() {
+    var bar = document.querySelector('.mbar');
+    if (bar) document.getElementById('mob').style.paddingBottom = (bar.offsetHeight + 20) + 'px';
+  }
+  window.addEventListener('resize', function () { if (P === 'm-') fitBottom(); });
   function setPauseLabel() { pauseBtns.forEach(function (b) { b.textContent = paused ? 'Play' : 'Pause'; }); }
 
   function start() {
@@ -621,8 +630,10 @@ svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin
     var nextP = phone ? 'm-' : 'd-';
     if (!first && nextP === P) return;
     P = nextP;
+    SPEED = phone ? 1.3 : 1;
     document.getElementById('desk').hidden = phone;
     document.getElementById('mob').hidden = !phone;
+    if (phone) fitBottom();
     runId++;
     if (reduce && first) { finalState(); paused = true; setPauseLabel(); }
     else { start(); }
