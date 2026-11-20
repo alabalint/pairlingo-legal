@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>PairLingo SDLC Flow</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: two drawings of the same flow — a wide circuit board (left→right) for computers and a tall one (top→bottom) for phones; the script shows one. Dark phosphor look by choice. */
+:root {
+  --bg: #050D09;
+  --board: #081510;
+  --panel: #0C1C15;
+  --line: #1D3D2D;
+  --ink: #DDF6E8;
+  --soft: #A3CDB6;
+  --dim: #5F8E75;
+  --green: #4FE39E;
+  --opus: #CDB2FF;
+  --haiku: #86D8FF;
+  --amber: #FFB547;
+  --amber-bg: #1D1509;
+  --defect: #FF7FA0;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+html, body { background: var(--bg); }
+body { color: var(--ink); font-family: var(--sans); }
+.wrap { max-width: 1480px; margin: 0 auto; padding-block: 20px 28px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+figure { margin: 0; }
+.bar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 10px; }
+button.ctl { font: 600 13px/1 var(--mono); letter-spacing: .04em; color: var(--soft); background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+button.ctl:hover { color: var(--ink); border-color: var(--green); }
+button.ctl:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.frame { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--board); }
+svg.flow { display: block; width: 100%; min-width: 1100px; height: auto; }
+figcaption { margin-top: 12px; font-size: 15px; line-height: 1.5; color: var(--soft); max-width: 72ch; }
+
+/* Phone layout */
+.phone .frame { border-radius: 12px; }
+svg.flow-m { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; }
+.phone { padding-bottom: calc(150px + env(safe-area-inset-bottom, 0px)); }
+.mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; background: rgba(8,21,16,0.96); border-top: 1px solid var(--line); padding-top: 10px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mbar-in { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.mbar-row { display: flex; align-items: center; gap: 10px; }
+.mstep { font: 600 14px var(--mono); color: var(--amber); }
+.msay { font: 400 16px/1.4 var(--sans); color: var(--ink); min-height: 2.8em; }
+.mbar .ctl { padding: 7px 12px; }
+.mbar .spacer { flex: 1; }
+
+/* SVG text */
+.t-eyebrow { font: 600 15px var(--mono); letter-spacing: 3px; fill: var(--green); }
+.t-title { font: 600 28px var(--sans); fill: var(--ink); }
+.t-leg { font: 600 14px var(--mono); fill: var(--soft); }
+.t-name { font: 600 17px var(--mono); fill: var(--ink); text-anchor: middle; }
+.t-sub { font: 400 13px var(--mono); fill: var(--dim); text-anchor: middle; }
+.t-note { font: 400 14px var(--mono); fill: var(--dim); }
+.t-say { font: 400 19px var(--sans); fill: var(--ink); }
+.t-step { font: 600 16px var(--mono); fill: var(--amber); }
+.t-file { font: 400 13px var(--mono); fill: var(--dim); text-anchor: middle; transition: fill .3s; }
+.t-gate { font: 800 15px var(--mono); fill: var(--amber); text-anchor: middle; }
+.t-ok { font: 800 20px var(--mono); fill: var(--green); text-anchor: middle; opacity: 0; transition: opacity .25s; }
+.t-tok { font: 600 13px var(--mono); fill: var(--ink); text-anchor: middle; }
+.flow-m .t-eyebrow { font-size: 13px; letter-spacing: 2px; }
+.flow-m .t-title { font-size: 21px; }
+.flow-m .t-leg { font-size: 13px; }
+.flow-m .t-name { font-size: 16px; }
+.flow-m .t-sub, .flow-m .t-file { font-size: 12.5px; }
+.flow-m .t-gate { font-size: 14px; }
+
+.trace { fill: none; stroke: var(--line); stroke-width: 2.5; }
+.lane { fill: none; stroke: var(--dim); stroke-width: 1.6; stroke-dasharray: 5 7; opacity: .7; }
+.defect-arc { fill: none; stroke: var(--defect); stroke-width: 1.8; stroke-dasharray: 5 6; opacity: .45; }
+.bus-base { fill: none; stroke: #3A2A12; stroke-width: 1.6; stroke-dasharray: 3 6; }
+.bus-hot { fill: none; stroke: var(--amber); stroke-width: 2.5; opacity: 0; }
+.main-line { fill: none; stroke: var(--soft); stroke-width: 3; }
+.branch { fill: none; stroke: var(--green); stroke-width: 2.5; }
+.rel { fill: none; stroke: var(--dim); stroke-width: 2; }
+
+.node rect { fill: var(--panel); stroke-width: 2; transition: stroke-width .3s, fill .3s; }
+.m-sonnet rect { stroke: #2E7F59; }
+.m-opus rect { stroke: #7C68A6; }
+.m-haiku rect { stroke: #4E7F97; }
+.m-plain rect { stroke: var(--line); }
+.node.active rect { stroke-width: 3.5; fill: #10291D; filter: url(#glow); }
+.m-sonnet.active rect { stroke: var(--green); }
+.m-opus.active rect { stroke: var(--opus); fill: #1A1529; }
+.m-haiku.active rect { stroke: var(--haiku); fill: #0F2230; }
+.m-plain.active rect { stroke: var(--soft); }
+/* progress bars live inside node groups: keep them out of the node's border/active styling */
+.pbar-bg { fill: #0A1912 !important; stroke: none !important; filter: none !important; }
+.pbar { fill: var(--green) !important; stroke: none !important; filter: none !important; }
+.pbar-opus { fill: var(--opus) !important; }
+
+.gate polygon { fill: var(--amber-bg); stroke: #8A6326; stroke-width: 2; transition: stroke .3s; }
+.gate.waiting polygon { stroke: var(--amber); stroke-width: 3; filter: url(#glow); animation: pulse 900ms ease-in-out infinite alternate; }
+.gate.ok .t-ok { opacity: 1; }
+@keyframes pulse { from { opacity: .55; } to { opacity: 1; } }
+
+.you rect { fill: var(--amber-bg); stroke: #8A6326; stroke-width: 2; }
+.you .lamp { fill: #3A2A12; transition: fill .2s; }
+.you.waiting rect { stroke: var(--amber); }
+.you.waiting .lamp { fill: var(--amber); animation: pulse 500ms ease-in-out infinite alternate; }
+
+.file rect { fill: var(--board); stroke: var(--line); stroke-width: 1.5; transition: fill .3s, stroke .3s; }
+.file.lit rect { fill: #0F2A1E; stroke: var(--green); }
+.file.lit .t-file { fill: var(--ink); }
+
+.check { font: 600 13px var(--mono); fill: var(--green); text-anchor: middle; opacity: 0; transition: opacity .25s; }
+.check.on { opacity: 1; }
+.backlog-card { transition: transform .5s; }
+.backlog-card.lift { transform: translate(0px, -14px); }
+.flow-m .backlog-card.lift { transform: translate(0px, -8px); }
+.mergedot { fill: var(--green); opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gate.waiting polygon, .you.waiting .lamp { animation: none; }
+}
+</style>
+</head>
+<body>
+<!-- shared definitions: kept in a rendered (zero-size) svg so both layouts can use them -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<pattern id="pcb" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="16" cy="16" r="1.4" fill="#0F271C"/></pattern>
+<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+</svg>
+
+<!-- ===================== COMPUTER LAYOUT ===================== -->
+<div class="wrap" id="desk">
+<figure>
+<div class="bar">
+<button type="button" class="ctl js-pause">Pause</button>
+<button type="button" class="ctl js-restart">Restart</button>
+</div>
+<div class="frame">
+<svg class="flow" viewBox="0 0 1760 910" role="img" aria-label="Animated diagram of the PairLingo SDLC: one backlog item, PL-005, moves through the BA, gate G1, the Architect, gate G2, three developers working in parallel, integration with build and unit tests, QA with a defect sent back to a developer, gate G3, four documentation tracks, gate G4 and a pull request, then merges into main. You approve every gate from the console at the top, and each agent leaves a file in specs/PL-005.">
+<rect width="1760" height="910" fill="url(#pcb)"/>
+<text class="t-eyebrow" x="40" y="46">PAIRLINGO // SDLC</text>
+<text class="t-title" x="40" y="82">One task, end to end</text>
+<g transform="translate(1290 50)">
+<circle cx="0" cy="-5" r="6" fill="#CDB2FF"/><text class="t-leg" x="12" y="0">Opus</text>
+<circle cx="86" cy="-5" r="6" fill="#4FE39E"/><text class="t-leg" x="98" y="0">Sonnet</text>
+<circle cx="190" cy="-5" r="6" fill="#86D8FF"/><text class="t-leg" x="202" y="0">Haiku</text>
+<polygon points="290,-13 298,-5 290,3 282,-5" fill="#1D1509" stroke="#FFB547" stroke-width="2"/><text class="t-leg" x="306" y="0">gate</text>
+</g>
+<g id="d-you" class="you">
+<rect x="810" y="100" width="300" height="68" rx="12"/>
+<circle class="lamp" cx="836" cy="134" r="8"/>
+<text class="t-name" x="975" y="128" style="fill:#FFB547">YOU · product owner</text>
+<text class="t-sub" x="975" y="152">approve · change · reject</text>
+</g>
+<path class="bus-base" d="M960 168 L960 210 M400 210 L1550 210 M400 210 L400 398 M640 210 L640 398 M1280 210 L1280 398 M1550 210 L1550 398"/>
+<path class="bus-hot" id="d-bus0" d="M960 168 L960 210 L400 210 L400 398"/>
+<path class="bus-hot" id="d-bus1" d="M960 168 L960 210 L640 210 L640 398"/>
+<path class="bus-hot" id="d-bus2" d="M960 168 L960 210 L1280 210 L1280 398"/>
+<path class="bus-hot" id="d-bus3" d="M960 168 L960 210 L1550 210 L1550 398"/>
+<path class="lane" d="M110 462 C110 640 700 640 700 445"/>
+<path class="lane" d="M400 460 C400 572 700 572 700 445"/>
+<text class="t-note" x="405" y="622" text-anchor="middle">S lane · straight to developer</text>
+<text class="t-note" x="552" y="526" text-anchor="middle">M lane · no architect</text>
+<path class="trace" d="M160 430 L700 430"/>
+<path class="trace" d="M700 430 C740 430 740 300 780 300 L820 300"/>
+<path class="trace" d="M700 430 L820 430"/>
+<path class="trace" d="M700 430 C740 430 740 560 780 560 L820 560"/>
+<path class="trace" d="M820 300 L860 300 C900 300 900 430 940 430"/>
+<path class="trace" d="M820 430 L940 430"/>
+<path class="trace" d="M820 560 L860 560 C900 560 900 430 940 430"/>
+<path class="trace" d="M940 430 L1330 430"/>
+<path class="trace" d="M1330 430 C1360 430 1360 310 1390 310 L1430 310 C1460 310 1460 430 1490 430"/>
+<path class="trace" d="M1330 430 C1360 430 1360 390 1390 390 L1430 390 C1460 390 1460 430 1490 430"/>
+<path class="trace" d="M1330 430 C1360 430 1360 470 1390 470 L1430 470 C1460 470 1460 430 1490 430"/>
+<path class="trace" d="M1330 430 C1360 430 1360 550 1390 550 L1430 550 C1460 550 1460 430 1490 430"/>
+<path class="trace" d="M1490 430 L1660 430 C1740 430 1690 700 1690 780"/>
+<path class="trace" d="M1160 398 L1160 332"/>
+<text class="t-note" x="1172" y="370">runs</text>
+<path class="defect-arc" d="M1160 462 C1160 650 820 650 820 592"/>
+<text class="t-note" x="990" y="644" text-anchor="middle" style="fill:#FF7FA0">defect → back to its developer</text>
+<path class="main-line" d="M40 780 L1740 780"/>
+<text class="t-name" x="40" y="768" style="text-anchor:start;font-size:15px">main</text>
+<circle cx="70" cy="780" r="6" fill="#A3CDB6"/><circle cx="200" cy="780" r="6" fill="#A3CDB6"/>
+<path class="rel" d="M240 780 C270 780 280 830 320 830 L380 830"/>
+<text class="t-note" x="390" y="835">release/1.8 · ships 1.8</text>
+<path class="branch" id="d-branchline" d="M110 780 L110 462"/>
+<text class="t-note" x="122" y="748">feature/PL-005</text>
+<circle id="d-mergedot" class="mergedot" cx="1690" cy="780" r="8"/>
+<circle id="d-mergering" cx="1690" cy="780" r="8" fill="none" stroke="#4FE39E" stroke-width="2" opacity="0"/>
+<text class="t-note" x="40" y="680">specs/PL-005-…/</text>
+<g class="file" id="d-f0"><rect x="48" y="690" width="124" height="30" rx="6"/><text class="t-file" x="110" y="710">STATUS.md</text></g>
+<g class="file" id="d-f1"><rect x="218" y="690" width="124" height="30" rx="6"/><text class="t-file" x="280" y="710">01-spec.md</text></g>
+<g class="file" id="d-f2"><rect x="453" y="690" width="134" height="30" rx="6"/><text class="t-file" x="520" y="710">02-design.md</text></g>
+<g class="file" id="d-f3"><rect x="753" y="690" width="134" height="30" rx="6"/><text class="t-file" x="820" y="710">03-dev-notes</text></g>
+<g class="file" id="d-f4"><rect x="1093" y="690" width="134" height="30" rx="6"/><text class="t-file" x="1160" y="710">04-qa-report</text></g>
+<g class="file" id="d-f5"><rect x="1348" y="690" width="124" height="30" rx="6"/><text class="t-file" x="1410" y="710">05-docs.md</text></g>
+<g class="file" id="d-f6"><rect x="1610" y="690" width="100" height="30" rx="6"/><text class="t-file" x="1660" y="710">pr.md</text></g>
+<g id="d-tokens"></g>
+<g>
+<rect x="66" y="392" width="100" height="56" rx="8" fill="#0A1912" stroke="#1D3D2D" stroke-width="1.5"/>
+<rect x="62" y="400" width="100" height="56" rx="8" fill="#0B1B14" stroke="#1D3D2D" stroke-width="1.5"/>
+<text class="t-sub" x="112" y="422">PL-004</text>
+<g id="d-card5" class="backlog-card">
+<rect x="58" y="408" width="100" height="56" rx="8" fill="#0C1C15" stroke="#4FE39E" stroke-width="2"/>
+<text class="t-name" x="108" y="436" style="font-size:15px">PL-005</text>
+<text class="t-sub" x="108" y="454">backlog</text>
+</g>
+</g>
+<g class="node m-sonnet" id="d-n-ba"><rect x="215" y="398" width="130" height="64" rx="10"/><text class="t-name" x="280" y="426">BA</text><text class="t-sub" x="280" y="447">spec</text></g>
+<g class="gate" id="d-g0"><polygon points="400,400 430,430 400,460 370,430"/><text class="t-gate" x="400" y="435">G1</text><text class="t-ok" x="400" y="388">✓</text></g>
+<g class="node m-opus" id="d-n-arch"><rect x="455" y="398" width="130" height="64" rx="10"/><text class="t-name" x="520" y="426">Architect</text><text class="t-sub" x="520" y="447">design + tasks</text></g>
+<g class="gate" id="d-g1"><polygon points="640,400 670,430 640,460 610,430"/><text class="t-gate" x="640" y="435">G2</text><text class="t-ok" x="640" y="388">✓</text></g>
+<g class="node m-sonnet" id="d-n-d1"><rect x="735" y="268" width="170" height="64" rx="10"/><text class="t-name" x="820" y="292">T1 · developer</text><text class="t-sub" x="820" y="310">own worktree</text><rect class="pbar-bg" x="750" y="318" width="140" height="6" rx="3"/><rect class="pbar" id="d-pb1" data-w="140" x="750" y="318" width="0" height="6" rx="3"/></g>
+<g class="node m-sonnet" id="d-n-d2"><rect x="735" y="398" width="170" height="64" rx="10"/><text class="t-name" x="820" y="422">T2 · developer</text><text class="t-sub" x="820" y="440">own worktree</text><rect class="pbar-bg" x="750" y="448" width="140" height="6" rx="3"/><rect class="pbar" id="d-pb2" data-w="140" x="750" y="448" width="0" height="6" rx="3"/></g>
+<g class="node m-opus" id="d-n-d3"><rect x="735" y="528" width="170" height="64" rx="10"/><text class="t-name" x="820" y="552">T3 · senior</text><text class="t-sub" x="820" y="570">high-risk task</text><rect class="pbar-bg" x="750" y="578" width="140" height="6" rx="3"/><rect class="pbar pbar-opus" id="d-pb3" data-w="140" x="750" y="578" width="0" height="6" rx="3"/></g>
+<g class="node m-sonnet" id="d-n-int"><rect x="955" y="398" width="130" height="64" rx="10"/><text class="t-name" x="1020" y="424">Integration</text><text class="check" id="d-c-t0" x="996" y="448">T0 ✓</text><text class="check" id="d-c-t1" x="1046" y="448">T1 ✓</text></g>
+<g class="node m-haiku" id="d-n-run"><rect x="1085" y="268" width="150" height="64" rx="10"/><text class="t-name" x="1160" y="296">QA runner</text><text class="t-sub" x="1160" y="317">runs T0–T2</text></g>
+<g class="node m-sonnet" id="d-n-qa"><rect x="1105" y="398" width="110" height="64" rx="10"/><text class="t-name" x="1160" y="426">QA</text><text class="t-sub" x="1160" y="447">tests</text></g>
+<g class="gate" id="d-g2"><polygon points="1280,400 1310,430 1280,460 1250,430"/><text class="t-gate" x="1280" y="435">G3</text><text class="t-ok" x="1280" y="388">✓</text></g>
+<g class="node m-sonnet" id="d-n-doc0"><rect x="1350" y="288" width="120" height="44" rx="8"/><text class="t-name" x="1410" y="316" style="font-size:15px">user guide</text></g>
+<g class="node m-sonnet" id="d-n-doc1"><rect x="1350" y="368" width="120" height="44" rx="8"/><text class="t-name" x="1410" y="396" style="font-size:15px">architecture</text></g>
+<g class="node m-sonnet" id="d-n-doc2"><rect x="1350" y="448" width="120" height="44" rx="8"/><text class="t-name" x="1410" y="476" style="font-size:15px">release notes</text></g>
+<g class="node m-haiku" id="d-n-doc3"><rect x="1350" y="528" width="120" height="44" rx="8"/><text class="t-name" x="1410" y="556" style="font-size:15px">limits · web</text></g>
+<g class="gate" id="d-g3"><polygon points="1550,400 1580,430 1550,460 1520,430"/><text class="t-gate" x="1550" y="435">G4</text><text class="t-ok" x="1550" y="388">✓</text></g>
+<g class="node m-plain" id="d-n-pr"><rect x="1600" y="398" width="120" height="64" rx="10"/><text class="t-name" x="1660" y="424">Pull request</text><text class="t-sub" x="1660" y="447">push + PR</text></g>
+<g fill="none" stroke="none">
+<path id="d-p-a" d="M110 430 L280 430"/>
+<path id="d-p-b" d="M280 430 L400 430"/>
+<path id="d-p-c" d="M400 430 L520 430"/>
+<path id="d-p-d" d="M520 430 L640 430"/>
+<path id="d-p-e1" d="M640 430 L700 430 C740 430 740 300 780 300 L820 300"/>
+<path id="d-p-e2" d="M640 430 L820 430"/>
+<path id="d-p-e3" d="M640 430 L700 430 C740 430 740 560 780 560 L820 560"/>
+<path id="d-p-f1" d="M820 300 L860 300 C900 300 900 430 940 430 L1020 430"/>
+<path id="d-p-f2" d="M820 430 L1020 430"/>
+<path id="d-p-f3" d="M820 560 L860 560 C900 560 900 430 940 430 L1020 430"/>
+<path id="d-p-g" d="M1020 430 L1160 430"/>
+<path id="d-p-defect" d="M1160 430 L1160 462 C1160 650 820 650 820 592 L820 560"/>
+<path id="d-p-h" d="M1160 430 L1280 430"/>
+<path id="d-p-i0" d="M1280 430 L1330 430 C1360 430 1360 310 1390 310 L1410 310"/>
+<path id="d-p-i1" d="M1280 430 L1330 430 C1360 430 1360 390 1390 390 L1410 390"/>
+<path id="d-p-i2" d="M1280 430 L1330 430 C1360 430 1360 470 1390 470 L1410 470"/>
+<path id="d-p-i3" d="M1280 430 L1330 430 C1360 430 1360 550 1390 550 L1410 550"/>
+<path id="d-p-o0" d="M1410 310 L1430 310 C1460 310 1460 430 1490 430 L1550 430"/>
+<path id="d-p-o1" d="M1410 390 L1430 390 C1460 390 1460 430 1490 430 L1550 430"/>
+<path id="d-p-o2" d="M1410 470 L1430 470 C1460 470 1460 430 1490 430 L1550 430"/>
+<path id="d-p-o3" d="M1410 550 L1430 550 C1460 550 1460 430 1490 430 L1550 430"/>
+<path id="d-p-j" d="M1550 430 L1660 430"/>
+<path id="d-p-k" d="M1660 430 C1740 430 1690 700 1690 780"/>
+</g>
+<line x1="40" y1="858" x2="1720" y2="858" stroke="#1D3D2D" stroke-width="1"/>
+<text class="t-step" id="d-stepn" x="40" y="890">--/14</text>
+<text class="t-say" id="d-say" x="110" y="890">Loading…</text>
+</svg>
+</div>
+<figcaption>One backlog item, PL-005, through PairLingo’s agent workflow. Agents do the work in their own lanes and leave a file at every step; at the four amber gates the work waits for your decision. Dashed lines are the shortcuts smaller tasks take.</figcaption>
+</figure>
+</div>
+
+<!-- ===================== PHONE LAYOUT ===================== -->
+<div class="wrap phone" id="mob" hidden>
+<figure>
+<div class="frame">
+<svg class="flow-m" viewBox="0 0 420 990" role="img" aria-label="Animated diagram of the PairLingo SDLC, drawn top to bottom: one backlog item moves through the BA, gate G1, the Architect, gate G2, three parallel developers, integration, QA with a defect sent back, gate G3, four documentation tracks, gate G4 and a pull request, then merges into main. You approve every gate from the console at the top left, and each agent leaves a file.">
+<rect width="420" height="990" fill="url(#pcb)"/>
+<text class="t-eyebrow" x="16" y="28">PAIRLINGO // SDLC</text>
+<text class="t-title" x="16" y="54">One task, end to end</text>
+<g transform="translate(262 24)">
+<circle cx="0" cy="-4" r="5" fill="#CDB2FF"/><text class="t-leg" x="10" y="0">Opus</text>
+<circle cx="70" cy="-4" r="5" fill="#4FE39E"/><text class="t-leg" x="80" y="0">Sonnet</text>
+<circle cx="0" cy="18" r="5" fill="#86D8FF"/><text class="t-leg" x="10" y="22">Haiku</text>
+<polygon points="70,10 77,17 70,24 63,17" fill="#1D1509" stroke="#FFB547" stroke-width="2"/><text class="t-leg" x="80" y="22">gate</text>
+</g>
+<g id="m-you" class="you">
+<rect x="10" y="68" width="170" height="46" rx="10"/>
+<circle class="lamp" cx="28" cy="91" r="6"/>
+<text class="t-name" x="102" y="88" style="fill:#FFB547;font-size:15px">YOU</text>
+<text class="t-sub" x="102" y="105">approve · change · reject</text>
+</g>
+<path class="bus-base" d="M16 114 L16 830 M16 275 L186 275 M16 395 L186 395 M16 700 L186 700 M16 830 L186 830"/>
+<path class="bus-hot" id="m-bus0" d="M16 114 L16 275 L186 275"/>
+<path class="bus-hot" id="m-bus1" d="M16 114 L16 395 L186 395"/>
+<path class="bus-hot" id="m-bus2" d="M16 114 L16 700 L186 700"/>
+<path class="bus-hot" id="m-bus3" d="M16 114 L16 830 L186 830"/>
+<path class="main-line" d="M410 92 L410 975"/>
+<text class="t-name" x="404" y="86" style="text-anchor:end;font-size:13px">main</text>
+<circle cx="410" cy="112" r="5" fill="#A3CDB6"/><circle cx="410" cy="140" r="5" fill="#A3CDB6"/>
+<path class="branch" id="m-branchline" d="M410 172 C340 172 300 150 260 150"/>
+<path class="trace" d="M210 172 L210 420"/>
+<path class="trace" d="M210 420 C210 440 95 440 95 465"/>
+<path class="trace" d="M210 420 L210 465"/>
+<path class="trace" d="M210 420 C210 440 325 440 325 465"/>
+<path class="trace" d="M95 491 C95 512 210 505 210 520"/>
+<path class="trace" d="M210 491 L210 520"/>
+<path class="trace" d="M325 491 C325 512 210 505 210 520"/>
+<path class="trace" d="M210 520 L210 728"/>
+<path class="trace" d="M210 728 C210 745 75 745 75 765 C75 785 210 785 210 800"/>
+<path class="trace" d="M210 728 C210 745 165 745 165 765 C165 785 210 785 210 800"/>
+<path class="trace" d="M210 728 C210 745 255 745 255 765 C255 785 210 785 210 800"/>
+<path class="trace" d="M210 728 C210 745 345 745 345 765 C345 785 210 785 210 800"/>
+<path class="trace" d="M210 800 L210 895 L275 895 C360 895 410 905 410 950"/>
+<path class="trace" d="M160 630 L140 630"/>
+<path class="defect-arc" d="M260 630 C330 630 325 560 325 491"/>
+<text class="t-note" x="340" y="600" style="fill:#FF7FA0;font-size:11.5px">defect</text>
+<circle id="m-mergedot" class="mergedot" cx="410" cy="950" r="7"/>
+<circle id="m-mergering" cx="410" cy="950" r="7" fill="none" stroke="#4FE39E" stroke-width="2" opacity="0"/>
+<g class="file" id="m-f0"><rect x="40" y="139" width="110" height="24" rx="5"/><text class="t-file" x="95" y="156">STATUS.md</text></g>
+<g class="file" id="m-f1"><rect x="282" y="203" width="112" height="24" rx="5"/><text class="t-file" x="338" y="220">01-spec.md</text></g>
+<g class="file" id="m-f2"><rect x="282" y="323" width="112" height="24" rx="5"/><text class="t-file" x="338" y="340">02-design.md</text></g>
+<g class="file" id="m-f3"><rect x="34" y="543" width="118" height="24" rx="5"/><text class="t-file" x="93" y="560">03-dev-notes</text></g>
+<g class="file" id="m-f4"><rect x="282" y="688" width="112" height="24" rx="5"/><text class="t-file" x="338" y="705">04-qa-report</text></g>
+<g class="file" id="m-f5"><rect x="282" y="818" width="112" height="24" rx="5"/><text class="t-file" x="338" y="835">05-docs.md</text></g>
+<g class="file" id="m-f6"><rect x="40" y="883" width="100" height="24" rx="5"/><text class="t-file" x="90" y="900">pr.md</text></g>
+<g id="m-tokens"></g>
+<g>
+<rect x="164" y="122" width="100" height="44" rx="7" fill="#0A1912" stroke="#1D3D2D" stroke-width="1.5"/>
+<g id="m-card5" class="backlog-card">
+<rect x="160" y="128" width="100" height="44" rx="7" fill="#0C1C15" stroke="#4FE39E" stroke-width="2"/>
+<text class="t-name" x="210" y="149" style="font-size:14px">PL-005</text>
+<text class="t-sub" x="210" y="165" style="font-size:11px">backlog</text>
+</g>
+</g>
+<g class="node m-sonnet" id="m-n-ba"><rect x="150" y="192" width="120" height="46" rx="9"/><text class="t-name" x="210" y="212">BA</text><text class="t-sub" x="210" y="229">spec</text></g>
+<g class="gate" id="m-g0"><polygon points="210,251 234,275 210,299 186,275"/><text class="t-gate" x="210" y="280">G1</text><text class="t-ok" x="252" y="282">✓</text></g>
+<g class="node m-opus" id="m-n-arch"><rect x="145" y="312" width="130" height="46" rx="9"/><text class="t-name" x="210" y="332">Architect</text><text class="t-sub" x="210" y="349">design + tasks</text></g>
+<g class="gate" id="m-g1"><polygon points="210,371 234,395 210,419 186,395"/><text class="t-gate" x="210" y="400">G2</text><text class="t-ok" x="252" y="402">✓</text></g>
+<g class="node m-sonnet" id="m-n-d1"><rect x="45" y="439" width="100" height="52" rx="9"/><text class="t-name" x="95" y="460" style="font-size:14px">T1 · dev</text><rect class="pbar-bg" x="57" y="474" width="76" height="5" rx="2.5"/><rect class="pbar" id="m-pb1" data-w="76" x="57" y="474" width="0" height="5" rx="2.5"/></g>
+<g class="node m-sonnet" id="m-n-d2"><rect x="160" y="439" width="100" height="52" rx="9"/><text class="t-name" x="210" y="460" style="font-size:14px">T2 · dev</text><rect class="pbar-bg" x="172" y="474" width="76" height="5" rx="2.5"/><rect class="pbar" id="m-pb2" data-w="76" x="172" y="474" width="0" height="5" rx="2.5"/></g>
+<g class="node m-opus" id="m-n-d3"><rect x="275" y="439" width="100" height="52" rx="9"/><text class="t-name" x="325" y="460" style="font-size:14px">T3 · senior</text><rect class="pbar-bg" x="287" y="474" width="76" height="5" rx="2.5"/><rect class="pbar pbar-opus" id="m-pb3" data-w="76" x="287" y="474" width="0" height="5" rx="2.5"/></g>
+<g class="node m-sonnet" id="m-n-int"><rect x="145" y="531" width="130" height="48" rx="9"/><text class="t-name" x="210" y="551" style="font-size:15px">Integration</text><text class="check" id="m-c-t0" x="186" y="570">T0 ✓</text><text class="check" id="m-c-t1" x="234" y="570">T1 ✓</text></g>
+<g class="node m-haiku" id="m-n-run"><rect x="40" y="607" width="100" height="46" rx="9"/><text class="t-name" x="90" y="627" style="font-size:14px">QA runner</text><text class="t-sub" x="90" y="644">runs tests</text></g>
+<g class="node m-sonnet" id="m-n-qa"><rect x="160" y="607" width="100" height="46" rx="9"/><text class="t-name" x="210" y="627">QA</text><text class="t-sub" x="210" y="644">tests</text></g>
+<g class="gate" id="m-g2"><polygon points="210,676 234,700 210,724 186,700"/><text class="t-gate" x="210" y="705">G3</text><text class="t-ok" x="252" y="707">✓</text></g>
+<g class="node m-sonnet" id="m-n-doc0"><rect x="36" y="748" width="78" height="34" rx="7"/><text class="t-name" x="75" y="770" style="font-size:12.5px">user</text></g>
+<g class="node m-sonnet" id="m-n-doc1"><rect x="126" y="748" width="78" height="34" rx="7"/><text class="t-name" x="165" y="770" style="font-size:12.5px">arch</text></g>
+<g class="node m-sonnet" id="m-n-doc2"><rect x="216" y="748" width="78" height="34" rx="7"/><text class="t-name" x="255" y="770" style="font-size:12.5px">release</text></g>
+<g class="node m-haiku" id="m-n-doc3"><rect x="306" y="748" width="78" height="34" rx="7"/><text class="t-name" x="345" y="770" style="font-size:12.5px">limits</text></g>
+<g class="gate" id="m-g3"><polygon points="210,806 234,830 210,854 186,830"/><text class="t-gate" x="210" y="835">G4</text><text class="t-ok" x="252" y="837">✓</text></g>
+<g class="node m-plain" id="m-n-pr"><rect x="150" y="872" width="120" height="46" rx="9"/><text class="t-name" x="210" y="892" style="font-size:15px">Pull request</text><text class="t-sub" x="210" y="909">push + PR</text></g>
+<g fill="none" stroke="none">
+<path id="m-p-a" d="M210 150 L210 215"/>
+<path id="m-p-b" d="M210 215 L210 275"/>
+<path id="m-p-c" d="M210 275 L210 335"/>
+<path id="m-p-d" d="M210 335 L210 395"/>
+<path id="m-p-e1" d="M210 395 L210 420 C210 440 95 440 95 465"/>
+<path id="m-p-e2" d="M210 395 L210 465"/>
+<path id="m-p-e3" d="M210 395 L210 420 C210 440 325 440 325 465"/>
+<path id="m-p-f1" d="M95 465 L95 491 C95 512 210 505 210 520 L210 555"/>
+<path id="m-p-f2" d="M210 465 L210 555"/>
+<path id="m-p-f3" d="M325 465 L325 491 C325 512 210 505 210 520 L210 555"/>
+<path id="m-p-g" d="M210 555 L210 630"/>
+<path id="m-p-defect" d="M210 630 L260 630 C330 630 325 560 325 491 L325 465"/>
+<path id="m-p-h" d="M210 630 L210 700"/>
+<path id="m-p-i0" d="M210 700 L210 728 C210 745 75 745 75 765"/>
+<path id="m-p-i1" d="M210 700 L210 728 C210 745 165 745 165 765"/>
+<path id="m-p-i2" d="M210 700 L210 728 C210 745 255 745 255 765"/>
+<path id="m-p-i3" d="M210 700 L210 728 C210 745 345 745 345 765"/>
+<path id="m-p-o0" d="M75 765 C75 785 210 785 210 800 L210 830"/>
+<path id="m-p-o1" d="M165 765 C165 785 210 785 210 800 L210 830"/>
+<path id="m-p-o2" d="M255 765 C255 785 210 785 210 800 L210 830"/>
+<path id="m-p-o3" d="M345 765 C345 785 210 785 210 800 L210 830"/>
+<path id="m-p-j" d="M210 830 L210 895"/>
+<path id="m-p-k" d="M210 895 L275 895 C360 895 410 905 410 950"/>
+</g>
+</svg>
+</div>
+<figcaption>One backlog item through PairLingo’s agent workflow. Agents work and leave a file at every step; at the four amber gates the work waits for your decision.</figcaption>
+</figure>
+<div class="mbar" role="region" aria-label="Narration">
+<div class="mbar-in">
+<div class="mbar-row"><span class="mstep" id="m-stepn">--/14</span><span class="spacer"></span><button type="button" class="ctl js-pause">Pause</button><button type="button" class="ctl js-restart">Restart</button></div>
+<div class="msay" id="m-say" aria-live="polite">Loading…</div>
+</div>
+</div>
+</div>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var TOTAL = 14;
+  var P = 'd-';
+  function $(id) { return document.getElementById(P + id); }
+
+  // Virtual clock, so Pause really freezes everything mid-move.
+  var clock = 0, last = performance.now(), paused = false, runId = 0;
+  var waiters = [], tweens = [];
+  function frame(now) {
+    var dt = Math.min(now - last, 100); last = now;
+    if (!paused) {
+      clock += dt;
+      for (var i = tweens.length - 1; i >= 0; i--) {
+        var tw = tweens[i];
+        var p = Math.min(1, (clock - tw.start) / tw.dur);
+        tw.fn(tw.ease ? ease(p) : p);
+        if (p >= 1) { tweens.splice(i, 1); tw.resolve(); }
+      }
+      for (var j = waiters.length - 1; j >= 0; j--) {
+        if (clock >= waiters[j].at) { var w = waiters.splice(j, 1)[0]; w.resolve(); }
+      }
+      if (P === 'm-') follow(now);
+    }
+    requestAnimationFrame(frame);
+  }
+  function ease(p) { return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
+  function wait(ms) { return new Promise(function (r) { waiters.push({ at: clock + ms, resolve: r }); }); }
+  function tween(ms, fn, noEase) { return new Promise(function (r) { tweens.push({ start: clock, dur: ms, fn: fn, resolve: r, ease: !noEase }); }); }
+
+  function bbox(id) { return $(id).getBBox(); }
+  function center(id) { var b = bbox(id); return { x: b.x + b.width / 2, y: b.y + b.height / 2 }; }
+
+  var focusEl = null;
+  function token(label, color) {
+    var g = document.createElementNS(NS, 'g');
+    var c = document.createElementNS(NS, 'circle');
+    c.setAttribute('r', P === 'm-' ? '7' : '9'); c.setAttribute('fill', color || '#4FE39E'); c.setAttribute('filter', 'url(#glow)');
+    g.appendChild(c);
+    if (label) {
+      var t = document.createElementNS(NS, 'text');
+      t.setAttribute('class', 't-tok'); t.setAttribute('y', P === 'm-' ? '-12' : '-16'); t.textContent = label;
+      if (P === 'm-') { t.setAttribute('x', '26'); t.setAttribute('y', '4'); t.style.textAnchor = 'start'; t.style.fontSize = '11px'; }
+      g.appendChild(t);
+    }
+    $('tokens').appendChild(g);
+    focusEl = g;
+    return g;
+  }
+  function place(tok, x, y) { tok.setAttribute('transform', 'translate(' + x + ' ' + y + ')'); }
+  function placeAt(tok, id) { var c = center(id); place(tok, c.x, c.y); }
+  function move(tok, pathId, ms) {
+    var path = $(pathId), len = path.getTotalLength();
+    focusEl = tok;
+    return tween(ms, function (p) { var pt = path.getPointAtLength(p * len); place(tok, pt.x, pt.y); });
+  }
+  function draw(el, ms) {
+    var len = el.getTotalLength();
+    el.style.strokeDasharray = len; el.style.strokeDashoffset = len; el.style.opacity = 1;
+    return tween(ms, function (p) { el.style.strokeDashoffset = len * (1 - p); });
+  }
+  function on(id, cls) { $(id).classList.add(cls || 'active'); }
+  function off(id, cls) { $(id).classList.remove(cls || 'active'); }
+  function bar(id, ms) { var el = $(id), w = +el.getAttribute('data-w'); return tween(ms, function (p) { el.setAttribute('width', w * p); }, true); }
+
+  function drop(i, fromId) {
+    var src = bbox(fromId), dst = bbox('f' + i);
+    var size = P === 'm-' ? [10, 13] : [14, 18];
+    var g = document.createElementNS(NS, 'rect');
+    g.setAttribute('width', size[0]); g.setAttribute('height', size[1]); g.setAttribute('rx', '2');
+    g.setAttribute('fill', '#4FE39E'); g.setAttribute('filter', 'url(#glow)');
+    $('tokens').appendChild(g);
+    var x0 = src.x + src.width / 2 - size[0] / 2, y0 = src.y + src.height;
+    var x1 = dst.x + dst.width / 2 - size[0] / 2, y1 = dst.y + dst.height / 2 - size[1] / 2;
+    return tween(650, function (p) {
+      g.setAttribute('x', x0 + (x1 - x0) * p); g.setAttribute('y', y0 + (y1 - y0) * p);
+    }).then(function () { g.remove(); on('f' + i, 'lit'); });
+  }
+  function say(n, text) { $('stepn').textContent = (n < 10 ? '0' : '') + n + '/' + TOTAL; $('say').textContent = text; }
+
+  // Phone: keep the moving task in view, unless the viewer is scrolling by hand.
+  var userScrollUntil = 0, lastFollow = 0;
+  ['touchstart', 'wheel'].forEach(function (ev) {
+    window.addEventListener(ev, function () { userScrollUntil = performance.now() + 6000; }, { passive: true });
+  });
+  function follow(now) {
+    if (!focusEl || !focusEl.isConnected || now < userScrollUntil || now - lastFollow < 350) return;
+    lastFollow = now;
+    var r = focusEl.getBoundingClientRect();
+    var barH = document.querySelector('.mbar').offsetHeight;
+    var viewH = window.innerHeight - barH;
+    var y = r.top + r.height / 2;
+    if (y < viewH * 0.25 || y > viewH * 0.7) {
+      window.scrollTo({ top: Math.max(0, window.scrollY + y - viewH * 0.45), behavior: 'smooth' });
+    }
+  }
+
+  async function gate(i) {
+    on('g' + i, 'waiting'); on('you', 'waiting');
+    await draw($('bus' + i), 500);
+    await wait(900);
+    off('g' + i, 'waiting'); on('g' + i, 'ok'); off('you', 'waiting');
+    await wait(250);
+    $('bus' + i).style.opacity = 0;
+  }
+
+  var NODES = ['n-ba','n-arch','n-d1','n-d2','n-d3','n-int','n-run','n-qa','n-doc0','n-doc1','n-doc2','n-doc3','n-pr'];
+  function reset() {
+    $('tokens').innerHTML = '';
+    NODES.forEach(function (id) { off(id); });
+    for (var i = 0; i < 4; i++) { off('g' + i, 'waiting'); off('g' + i, 'ok'); $('bus' + i).style.opacity = 0; }
+    off('you', 'waiting');
+    for (var f = 0; f < 7; f++) off('f' + f, 'lit');
+    ['pb1','pb2','pb3'].forEach(function (id) { $(id).setAttribute('width', 0); });
+    off('c-t0', 'on'); off('c-t1', 'on');
+    $('card5').classList.remove('lift');
+    var br = $('branchline'), len = br.getTotalLength();
+    br.style.strokeDasharray = len; br.style.strokeDashoffset = len;
+    $('mergedot').style.opacity = 0; $('mergering').setAttribute('opacity', 0);
+  }
+  function finalState() {
+    reset();
+    for (var i = 0; i < 4; i++) on('g' + i, 'ok');
+    for (var f = 0; f < 7; f++) on('f' + f, 'lit');
+    ['pb1','pb2','pb3'].forEach(function (id) { $(id).setAttribute('width', $(id).getAttribute('data-w')); });
+    on('c-t0', 'on'); on('c-t1', 'on');
+    $('branchline').style.strokeDashoffset = 0;
+    $('mergedot').style.opacity = 1;
+    $('stepn').textContent = '14/14';
+    $('say').textContent = 'Still view: every gate passed, every file written, PL-005 merged into main. Press Restart to watch it move.';
+  }
+
+  async function sequence(id) {
+    function alive() { return id === runId; }
+    while (alive()) {
+      reset();
+      if (P === 'm-') window.scrollTo({ top: 0, behavior: 'smooth' });
+      say(1, 'PL-005 leaves the backlog, and a feature branch splits off main.');
+      on('card5', 'lift');
+      var t = token('PL-005'); placeAt(t, 'card5');
+      await Promise.all([draw($('branchline'), 900), drop(0, 'card5')]);
+      if (!alive()) return;
+
+      say(2, 'The BA (Sonnet) turns the idea into a testable spec.');
+      await move(t, 'p-a', 700); on('n-ba'); await wait(900); off('n-ba');
+      await drop(1, 'n-ba'); if (!alive()) return;
+
+      say(3, 'Gate G1: the work waits until you approve the spec.');
+      await move(t, 'p-b', 500); await gate(0); if (!alive()) return;
+
+      say(4, 'The Architect (Opus) designs the change and splits it into parallel tasks.');
+      await move(t, 'p-c', 500); on('n-arch'); await wait(1100); off('n-arch');
+      await drop(2, 'n-arch'); if (!alive()) return;
+
+      say(5, 'Gate G2: you approve the design.');
+      await move(t, 'p-d', 500); await gate(1); if (!alive()) return;
+
+      say(6, 'Three developers work at once, each in its own worktree. The high-risk task gets Opus.');
+      t.remove();
+      var d1 = token('T1'), d2 = token('T2'), d3 = token('T3', '#CDB2FF');
+      focusEl = d2;
+      await Promise.all([move(d1, 'p-e1', 900), move(d2, 'p-e2', 900), move(d3, 'p-e3', 900)]);
+      on('n-d1'); on('n-d2'); on('n-d3');
+      await Promise.all([bar('pb1', 1300), bar('pb2', 1700), bar('pb3', 2100)]);
+      off('n-d1'); off('n-d2'); off('n-d3');
+      await drop(3, 'n-d3'); if (!alive()) return;
+
+      say(7, 'Integration: the Conductor merges the task branches, then builds (T0) and runs unit tests (T1).');
+      await Promise.all([move(d1, 'p-f1', 900), move(d2, 'p-f2', 900), move(d3, 'p-f3', 900)]);
+      d1.remove(); d2.remove(); d3.remove();
+      t = token('PL-005'); placeAt(t, 'n-int');
+      on('n-int'); await wait(500); on('c-t0', 'on'); await wait(500); on('c-t1', 'on'); await wait(400); off('n-int');
+      if (!alive()) return;
+
+      say(8, 'QA writes tests for every acceptance criterion; the runner (Haiku) executes them.');
+      await move(t, 'p-g', 600); on('n-qa'); on('n-run'); await wait(1300); off('n-run');
+      if (!alive()) return;
+
+      say(9, 'A defect: QA sends it back to the developer who owns that task.');
+      t.remove(); var bug = token('defect', '#FF7FA0'); placeAt(bug, 'n-qa');
+      await move(bug, 'p-defect', 1400); bug.remove(); off('n-qa');
+      on('n-d3'); $('pb3').setAttribute('width', 0); await bar('pb3', 900); off('n-d3');
+      if (!alive()) return;
+
+      say(10, 'Fixed, re-integrated and re-tested. QA writes its report.');
+      t = token('T3', '#CDB2FF'); placeAt(t, 'n-d3');
+      await move(t, 'p-f3', 800); t.remove(); t = token('PL-005'); placeAt(t, 'n-int');
+      on('n-int'); await wait(400); off('n-int');
+      await move(t, 'p-g', 500); on('n-qa'); on('n-run'); await wait(700); off('n-run'); off('n-qa');
+      await drop(4, 'n-qa'); if (!alive()) return;
+
+      say(11, 'Gate G3: you accept the QA report and do the manual checks on real devices.');
+      await move(t, 'p-h', 500); await gate(2); if (!alive()) return;
+
+      say(12, 'Docs in parallel: user guide, architecture, release notes in six languages; limits checked.');
+      t.remove();
+      var docs = [token(''), token(''), token(''), token('', '#86D8FF')];
+      focusEl = docs[1];
+      await Promise.all(docs.map(function (d, k) { return move(d, 'p-i' + k, 800); }));
+      [0,1,2,3].forEach(function (k) { on('n-doc' + k); });
+      await wait(900); await drop(5, 'n-doc3');
+      [0,1,2,3].forEach(function (k) { off('n-doc' + k); });
+      await Promise.all(docs.map(function (d, k) { return move(d, 'p-o' + k, 800); }));
+      docs.forEach(function (d) { d.remove(); });
+      t = token('PL-005'); placeAt(t, 'g3');
+      if (!alive()) return;
+
+      say(13, 'Gate G4: you approve the push and the pull request opens.');
+      await gate(3); await move(t, 'p-j', 500); on('n-pr'); await drop(6, 'n-pr');
+      if (!alive()) return;
+
+      say(14, 'You approve the merge. PL-005 lands on main, and the next item can start.');
+      await wait(500); off('n-pr');
+      await move(t, 'p-k', 1000); t.remove();
+      $('mergedot').style.opacity = 1;
+      var ring = $('mergering');
+      var r0 = +ring.getAttribute('r');
+      await tween(900, function (p) { ring.setAttribute('r', r0 + 30 * p); ring.setAttribute('opacity', 1 - p); });
+      ring.setAttribute('r', r0);
+      await wait(2200);
+    }
+  }
+
+  // Layout choice: phones (either orientation) get the tall drawing; computers the wide one.
+  function phoneLike() {
+    var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    var shortSide = Math.min(screen.width || 9999, screen.height || 9999);
+    return (coarse && shortSide <= 600) || window.innerWidth <= 640;
+  }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pauseBtns = document.querySelectorAll('.js-pause');
+  function setPauseLabel() { pauseBtns.forEach(function (b) { b.textContent = paused ? 'Play' : 'Pause'; }); }
+
+  function start() {
+    runId++; waiters = []; tweens = []; paused = false; setPauseLabel();
+    sequence(runId);
+  }
+  function applyLayout(first) {
+    var phone = phoneLike();
+    var nextP = phone ? 'm-' : 'd-';
+    if (!first && nextP === P) return;
+    P = nextP;
+    document.getElementById('desk').hidden = phone;
+    document.getElementById('mob').hidden = !phone;
+    runId++;
+    if (reduce && first) { finalState(); paused = true; setPauseLabel(); }
+    else { start(); }
+  }
+  pauseBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (reduce && paused && clock === 0) { start(); return; }
+      paused = !paused; setPauseLabel();
+    });
+  });
+  document.querySelectorAll('.js-restart').forEach(function (b) { b.addEventListener('click', start); });
+  var resizeTimer = null;
+  window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(function () { applyLayout(false); }, 250); });
+
+  requestAnimationFrame(function (now) { last = now; frame(now); });
+  applyLayout(true);
+})();
+</script>
+
+</body>
+</html>
